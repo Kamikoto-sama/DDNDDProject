@@ -1,9 +1,9 @@
-.navbar{
-    background: #D1D2D7;
+﻿.navbar{
+    background: rgba(0, 166, 7, 0.72);
 }
 
 #menu li a{
-    color: #00A607;
+    color: #fbfffb;
 }
 
 body{
@@ -13,6 +13,11 @@ body{
 h1, h3{
     color: black;
     font-weight: 600;
+}
+
+#spheres div p{
+    font-size: 18px;
+    font-weight: bold;
 }
 
 #partners div.row div img{
