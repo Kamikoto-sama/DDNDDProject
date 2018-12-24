@@ -15,33 +15,8 @@
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
     <!--Slider-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" type="text/css" href="slider/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="slider/css/elastislide.css" />
-    <noscript>
-        <style>
-            .es-carousel ul{
-                display:block;
-            }
-        </style>
-    </noscript>
-    <script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
-			<div class="rg-image-wrapper">
-				{{if itemsCount > 1}}
-					<div class="rg-image-nav">
-						<a href="#" class="rg-image-nav-prev">Previous Image</a>
-						<a href="#" class="rg-image-nav-next">Next Image</a>
-					</div>
-				{{/if}}
-				<div class="rg-image"></div>
-				<div class="rg-loading"></div>
-				<div class="rg-caption-wrapper">
-					<div class="rg-caption" style="display:none;">
-						<p></p>
-					</div>
-				</div>
-			</div>
-		</script>
+    <link rel="stylesheet" href="slider/flexslider.css" type="text/css" media="screen" />
+    <!--IT'S MINE-->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -440,31 +415,20 @@
         <div class="container text-center" style="font-size: 20px">
             <h1>Об институте</h1><br>
             <p>Не стоит забывать о том, что институт — это не только учеба, но и активная студенческая жизнь. В УРФУ существует мероприятие для каждого: хакатоны, конференции разработчиков, спортивные соревнования, дебюты первокурсников и многое-многое другое.</p>
-            <div class="content">
-                <div id="rg-gallery" class="rg-gallery">
-                    <div class="rg-thumbs">
-                        <!-- Elastislide Carousel Thumbnail Viewer -->
-                        <div class="es-carousel-wrapper">
-                            <div class="es-nav">
-                                <span class="es-nav-prev">Previous</span>
-                                <span class="es-nav-next">Next</span>
-                            </div>
-                            <div class="es-carousel">
-                                <ul>
-                                    <li><a href="#"><img src="Images/galery1.jpg" data-large="Images/galery1.jpg" alt="image01"/></a></li>
-                                    <li><a href="#"><img src="Images/galery2.jpg" data-large="Images/galery2.jpg" alt="image02"/></a></li>
-                                    <li><a href="#"><img src="Images/galery3.jpg" data-large="Images/galery3.jpg" alt="image03"/></a></li>
-                                    <li><a href="#"><img src="Images/galery4.jpg" data-large="Images/galery4.jpg" alt="image04"/></a></li>
-                                    <li><a href="#"><img src="Images/galery5.jpg" data-large="Images/galery5.jpg" alt="image05"/></a></li>
-                                    <li><a href="#"><img src="Images/galery6.jpg" data-large="Images/galery6.jpg" alt="image06"/></a></li>
-                                    <li><a href="#"><img src="Images/galery7.jpg" data-large="Images/galery7.jpg" alt="image07"/></a></li>
-                                    <li><a href="#"><img src="Images/galery8.jpg" data-large="Images/galery8.jpg" alt="image08"/></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div><!-- rg-thumbs -->
-                </div><!-- rg-gallery -->
-            </div><!-- content -->
+            <!--Slider-->
+            <div class="flexslider">
+                <ul class="slides">
+                    <li><img src="images/galery1.jpg" alt="TUSA"></li>
+                    <li><img src="images/galery2.jpg" alt="TUSA"></li>
+                    <li><img src="images/galery3.jpg" alt="TUSA"></li>
+                    <li><img src="images/galery4.jpg" alt="TUSA"></li>
+                    <li><img src="images/galery5.jpg" alt="TUSA"></li>
+                    <li><img src="images/galery6.jpg" alt="TUSA"></li>
+                    <li><img src="images/galery7.jpg" alt="TUSA"></li>
+                    <li><img src="images/galery8.jpg" alt="TUSA"></li>
+                </ul>
+            </div>
+            <!--Slider-->
             <br>
             <div class="col-md-6">
                 <p>IT, информационная безопасность, радиоэлектроника — это только малый перечень того, где востребованы молодые люди с дипломами этого института. На протяжении учебных лет их поддерживают как преподаватели, дающие актуальные знания, так и партнеры, обеспечивающие базу для практик и проектов. Выпускник ИРИТ-РтФ — высококлассный специалист с широким кругозором, знающий все о современных и перспективных технологиях.</p>
@@ -495,11 +459,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-<!--Slide-->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="slider/js/jquery.tmpl.min.js"></script>
-<script type="text/javascript" src="slider/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="slider/js/jquery.elastislide.js"></script>
-<script type="text/javascript" src="slider/js/gallery.js"></script>
+<!--Slider-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="slider/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    $(window).load(function() {
+        $('.flexslider').flexslider();
+    });
+</script>
 </body>
 </html>
