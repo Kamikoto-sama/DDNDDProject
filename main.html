@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <title>Конструирование УРФУ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!--Bootstrap-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -13,9 +14,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
-    <!--/Bootstrap-->
+    <!--Slider-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="slider/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="slider/css/elastislide.css" />
+    <noscript>
+        <style>
+            .es-carousel ul{
+                display:block;
+            }
+        </style>
+    </noscript>
+    <script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
+			<div class="rg-image-wrapper">
+				{{if itemsCount > 1}}
+					<div class="rg-image-nav">
+						<a href="#" class="rg-image-nav-prev">Previous Image</a>
+						<a href="#" class="rg-image-nav-next">Next Image</a>
+					</div>
+				{{/if}}
+				<div class="rg-image"></div>
+				<div class="rg-loading"></div>
+				<div class="rg-caption-wrapper">
+					<div class="rg-caption" style="display:none;">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</script>
     <link rel="stylesheet" href="style.css">
-    <title>Конструирование УРФУ</title>
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -410,9 +437,36 @@
     </div>
     <br><br><br>
     <div class="row">
-        <div class="container">
-            <div class="col-md-6" style="font-size: 20px">
-                <h1 style="font-size: 35px">Об институте</h1><br>
+        <div class="container text-center" style="font-size: 20px">
+            <h1>Об институте</h1><br>
+            <p>Не стоит забывать о том, что институт — это не только учеба, но и активная студенческая жизнь. В УРФУ существует мероприятие для каждого: хакатоны, конференции разработчиков, спортивные соревнования, дебюты первокурсников и многое-многое другое.</p>
+            <div class="content">
+                <div id="rg-gallery" class="rg-gallery">
+                    <div class="rg-thumbs">
+                        <!-- Elastislide Carousel Thumbnail Viewer -->
+                        <div class="es-carousel-wrapper">
+                            <div class="es-nav">
+                                <span class="es-nav-prev">Previous</span>
+                                <span class="es-nav-next">Next</span>
+                            </div>
+                            <div class="es-carousel">
+                                <ul>
+                                    <li><a href="#"><img src="Images/galery1.jpg" data-large="Images/galery1.jpg" alt="image01"/></a></li>
+                                    <li><a href="#"><img src="Images/galery2.jpg" data-large="Images/galery2.jpg" alt="image02"/></a></li>
+                                    <li><a href="#"><img src="Images/galery3.jpg" data-large="Images/galery3.jpg" alt="image03"/></a></li>
+                                    <li><a href="#"><img src="Images/galery4.jpg" data-large="Images/galery4.jpg" alt="image04"/></a></li>
+                                    <li><a href="#"><img src="Images/galery5.jpg" data-large="Images/galery5.jpg" alt="image05"/></a></li>
+                                    <li><a href="#"><img src="Images/galery6.jpg" data-large="Images/galery6.jpg" alt="image06"/></a></li>
+                                    <li><a href="#"><img src="Images/galery7.jpg" data-large="Images/galery7.jpg" alt="image07"/></a></li>
+                                    <li><a href="#"><img src="Images/galery8.jpg" data-large="Images/galery8.jpg" alt="image08"/></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- rg-thumbs -->
+                </div><!-- rg-gallery -->
+            </div><!-- content -->
+            <br>
+            <div class="col-md-6">
                 <p>IT, информационная безопасность, радиоэлектроника — это только малый перечень того, где востребованы молодые люди с дипломами этого института. На протяжении учебных лет их поддерживают как преподаватели, дающие актуальные знания, так и партнеры, обеспечивающие базу для практик и проектов. Выпускник ИРИТ-РтФ — высококлассный специалист с широким кругозором, знающий все о современных и перспективных технологиях.</p>
                 <br>
                 <p>Институт владеет новейшим техническим оборудованием на сумму более чем в <b class="score">1 000 000</b> долларов.</p>
@@ -422,15 +476,15 @@
             </div>
         </div>
     </div>
-    <br><br>
-    <div class="row text-center" style="background: rgba(190,190,190,0.46);">
-        <div class="container" style="max-width: 700px;">
-            <h3>Наши контакты:</h3>
-            <h1>Контакт-центр: 8-800-100-50-44</h1>
-            <h3>(звонок по России бесплатный)</h3>
-            <br>
-            <p style="font-size: 18px">Главный учебный корпус УрФУ: 620002, Уральский федеральный округ, Свердловская область, Екатеринбург, ул. Мира, 19</p>
-        </div>
+</div>
+<br><br>
+<div class="row text-center" style="background: rgba(190,190,190,0.46);">
+    <div class="container" style="max-width: 700px;">
+        <h3>Наши контакты:</h3>
+        <h1>Контакт-центр: 8-800-100-50-44</h1>
+        <h3>(звонок по России бесплатный)</h3>
+        <br>
+        <p style="font-size: 18px">Главный учебный корпус УрФУ: 620002, Уральский федеральный округ, Свердловская область, Екатеринбург, ул. Мира, 19</p>
     </div>
 </div>
 
@@ -441,5 +495,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<!--Slide-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="slider/js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="slider/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="slider/js/jquery.elastislide.js"></script>
+<script type="text/javascript" src="slider/js/gallery.js"></script>
 </body>
 </html>
