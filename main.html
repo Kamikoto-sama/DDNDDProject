@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <title>Конструирование УРФУ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!--Bootstrap-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -13,9 +14,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
-    <!--/Bootstrap-->
+    <!--Slider-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="slider/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="slider/css/elastislide.css" />
+    <noscript>
+        <style>
+            .es-carousel ul{
+                display:block;
+            }
+        </style>
+    </noscript>
+    <script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
+			<div class="rg-image-wrapper">
+				{{if itemsCount > 1}}
+					<div class="rg-image-nav">
+						<a href="#" class="rg-image-nav-prev">Previous Image</a>
+						<a href="#" class="rg-image-nav-next">Next Image</a>
+					</div>
+				{{/if}}
+				<div class="rg-image"></div>
+				<div class="rg-loading"></div>
+				<div class="rg-caption-wrapper">
+					<div class="rg-caption" style="display:none;">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</script>
     <link rel="stylesheet" href="style.css">
-    <title>Конструирование УРФУ</title>
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -27,12 +54,13 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <div class="navbar-collapse collapse" style="font-weight: 600;">
+        <div class="navbar-collapse collapse" style="font-weight: 600; font-size: 12px;">
             <ul class="nav navbar-nav" id="menu">
                 <li><a href="#about" data-toggle="collapse" data-target=".navbar-collapse">О НАПРАВЛЕНИИ</a></li>
-                <li><a href="#professions" data-toggle="collapse" data-target=".navbar-collapse">БУДУЩИЕ ПРОФЕССИИ</a></li>
-                <li><a href="#passing-score" data-toggle="collapse" data-target=".navbar-collapse">ПРОХОДНЫЕ БАЛЛЫ</a></li>
+                <li><a href="#passing-score" data-toggle="collapse" data-target=".navbar-collapse">КАК ПОСТУПИТЬ</a></li>
                 <li><a href="#schedule" data-toggle="collapse" data-target=".navbar-collapse">УЧЕБНЫЙ ПЛАН</a></li>
+                <li><a href="#features" data-toggle="collapse" data-target=".navbar-collapse">ОСОБЕННОСТИ</a></li>
+                <li><a href="#professions" data-toggle="collapse" data-target=".navbar-collapse">БУДУЩИЕ ПРОФЕССИИ</a></li>
                 <li><a href="#jobs" data-toggle="collapse" data-target=".navbar-collapse">МЕСТА РАБОТЫ</a></li>
                 <li><a href="#tutors" data-toggle="collapse" data-target=".navbar-collapse">ПРЕПОДАВАТЕЛИ</a></li>
                 <li><a href="#about-university" data-toggle="collapse" data-target=".navbar-collapse">ОБ ИНСТИТУТЕ</a></li>
@@ -40,16 +68,27 @@
         </div>
     </div>
 </div>
+<br><br>
 <div class="container-fluid">
     <div class="row">
-        <img src="Images/head.jpg" class="img-responsive">
+        <img src="Images/head.png" class="img-responsive">
     </div>
-    <div class="row">
+    <div class="row" id="header" style="font-size: 20px; font-weight: 600">
         <div class="container">
-            <h1 class="text-center" style="font-size: 45px">
-                Конструирование и технология электронных систем</h1>
-            <a name="about"></a>
+            <div class="col-md-3 col-xs-6 text-center">
+                <div class="score">20</div>бюджетных мест
+            </div>
+            <div class="col-md-3 col-xs-6 text-center">
+                <div class="score">4</div> года обучения
+            </div>
+            <div class="col-md-3 col-xs-6 text-center">
+                <div class="score">47500₽</div>зарплата выпускника
+            </div>
+            <div class="col-md-3 col-xs-6 text-center">
+                <div class="score">207</div>баллов ЕГЭ на бюджет
+            </div>
         </div>
+        <a name="about"></a>
     </div>
     <br><br>
     <div class="row">
@@ -71,67 +110,6 @@
                     знаниями технологического оборудования, конструкторской
                     и технологической документации, методами настройки и
                     испытаний, контроля качества продукции.</p>
-                <a name="professions"></a>
-            </div>
-        </div>
-    </div>
-    <br><br>
-    <div class="row text-center">
-        <div class="container">
-            <h1 style="font-size: 40px;font-weight: bold;">Будущие профессии</h1>
-            <br>
-            <div class="row">
-                <div class="col-md-12 col-xs-12"><img src="Images/prof_before.jpg" class="img-responsive"></div>
-            </div>
-            <br>
-            <div class="row text-left" style="font-size: 17px">
-                <div class="col-md-4">
-                    <p><h3>Инженер-конструктор</h3></p>
-                    Этот специалист является настоящим изобретателем, он создаёт проекты (от мелких деталей до целых конструкций), отвечает за их испытание и способность надежно работать. Работа инженера-конструктора охватывает почти все стадии процесса разработки электронных средств, начиная с технического задания на разработку изделия, эскизного и технического проектирования и заканчивая его испытаниями и производством.
-                </div>
-                <div class="col-md-4">
-                    <p><h3>Инженер-технолог</h3></p>
-                    Инженер-технолог - это специалист, который занимается организацией производственного процесса или разработкой какой-либо технологии. В обязанности входят работы по разработке систем автоматизированного управления технологическими процессами, комплектованию оборудования, необходимого для осуществления технологического процесса, выбору наилучших режимов его работы, подборе базовых способов проверки качества.
-                </div>
-                <div class="col-md-4">
-                    <p><h3>Инженер-электроник</h3></p>
-                    Работа инженера-электроника может включать разработку структурных и функциональных схем электронных систем и комплексов, принципиальных схем устройств с использованием средств компьютерного проектирования, проведением проектных расчетов и технико-экономическим обоснованием принимаемых решений.
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
-    <br><br>
-    <div class="row text-center">
-        <div class="container">
-            <h1 style="font-size: 40px;font-weight: bold;">Cферы работы выпускников</h1>
-            <br>
-            <div class="row">
-                <div class="col-md-12 col-xs-12"><img src="Images/prof_before2.jpg" class="img-responsive"></div>
-            </div>
-            <br>
-            <div class="row text-left" id="spheres" style="font-size: 17px">
-                <div class="col-md-4">
-                    <h3>Радиотехника</h3>
-                    <br>
-                    Старейшее направление науки и техники, специалисты которого всегда будут нужны работодателям. Навигация и радио, телекоммуникационные системы и спутники, наука и армия, компьютеры и телевидение. Потребность рынка в специалистах данного направления не иссякнет еще очень долгое время.
-                    <br><br>
-                    <p>Средняя зарплата радиотехника в России — <b class="score">70 000</b> рублей в месяц.</p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Электронные устройства</h3>
-                    <br>
-                    Стоит ли писать о необходимости и востребованности специалистов в сфере электроники? С каждым годом наша в нашу жизнь внедряется все больше и больше электронных устройств, а, соответственно, и рынку всегда будут нужны специалисты в данной сфере.
-                    <br><br><br>
-                    <p>Средняя зарплата инженера-электрика в России — <b class="score">60 000</b> рублей в месяц.</p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Нанотехнологии</h3>
-                    <br>
-                    Одно из самых молодых и, в то же время, самых перспективных направлений развития науки и техники. Армия и техника, медицина и экология, инфраструктура и энергетика — во всех этих сферах уже применяются нанотехнологии. Специалист данной отрасли будет востребован не только в России, но и везде в мире.
-                    <br><br>
-                    <p>Средняя зарплата нанотехнолога в России — <b class="score">44 800</b> рублей в месяц.</p>
-                </div>
                 <a name="passing-score"></a>
             </div>
         </div>
@@ -202,13 +180,125 @@
             <br>
             <div class="row" style="font-weight: 600; font-size: 16px">
                 <div class="col-md-12">
-                    <a name="jobs"></a>
+                    <a name="features"></a>
                     <p>Это лишь неполный список всех предметов и дисциплин. Подробнее ознакомиться с учебным планом можно по</p>
                     <a href="https://programs.edu.urfu.ru/media/documents/00004559.pdf" target="_blank">ссылке</a>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row text-center">
+        <div class="container">
+            <h1 style="font-size: 40px;font-weight: bold;">Особенности</h1>
+            <br>
+            <div class="row">
+                <div class="col-md-12 col-xs-12"><img src="Images/features.jpg" class="img-responsive"></div>
+            </div>
+            <br>
+            <div class="row text-left" style="font-size: 17px">
+                <div class="col-md-3">
+                    <p><h3>Военная кафедра</h3></p>
+                    В нашем университете работают факультет военного обучения (ФВО, по- 
+                    старому «военная кафедра») и учебный военный центр (УВЦ). 
+                    Поступить на ФВО можно по конкурсу, обучаясь на втором курсе на любом из 
+                    направлений подготовки бакалавриата или специалитета. По окончанию 
+                    обучения студенты получают звание лейтенанта запаса. Прошедшие 
+                    обучение на ФВО освобождаются от обязательного военного призыва. 
+                    УВЦ дает возможность получить образование по военной специальности и 
+                    поступить на контрактную службу.
+                    </div>
+                <div class="col-md-3">
+                    <p><h3>Материальная помощь</h3></p>
+                    Раз в семестр студент может подать заявление на материальную помощь. 
+                    Институт выплачивает до 5000 рублей студентам, обратившимся за помощью 
+                    в связи с покупкой демисезонной одежды, оплатой медицинских операций, 
+                    лечением, приобретение медикаментов, проездом к месту жительства 
+                    родителей, арендой квартиры в городе, созданием семьи и многим другим. 
+                    Подробно об этом можно прочитать по ссылке (https://vk.com/@info_urfu- 
+                    mat-pomosch-na-universitete).
+                </div>
+                <div class="col-md-3">
+                    <p><h3>Общежитие</h3></p>
+                    Студенты проживают в современных общежитиях, оснащенных всем 
+                    необходимым для комфортной жизни: начиная от холодильников, душевых 
+                    и кухонных плит и заканчивая бесплатным доступом к интернету. Подать 
+                    заявление на место в общежитие может любой абитуриент. Получение места 
+                    будет зависеть от баллов ЕГЭ абитуриента, т.к. места в общежитии 
+                    распределяются в соответствии с рейтингом, составленным по баллам ЕГЭ.
+                </div>
+                <div class="col-md-3">
+                    <p><h3>Стипендия</h3></p>
+                    Стандартный размер стипендии студента — 2380 рублей. Её получают все первокурсники на протяжении первого семестра. Если студент имеет хотя бы одну тройку по итогу семестра, он лишается стипендии. Если студент закры-вает семестр одними “пятёрками”, то он получает повышенную стипендию в размере 3140 рублей. При учебе на “отлично” или “хорошо” студент в воз-расте до 20 лет, имеющий 1 родителя инвалида 1 группы получает 6000 рублей в месяц (6900 с учетом районного коэффициента). Помимо этого су-ществуют различные именные стипендии. О них можно подробнее узнать здесь 
+                    <a href="https://urfu.ru/ru/students/study/scholarships/imennye-stipendii/">Именные стипендии</a>
+                </div>
+                <a name="professions"></a>
+            </div>
+            <br>
+        </div>
+    </div>
+    <br><br>
+    <div class="row text-center">
+        <div class="container">
+            <h1 style="font-size: 40px;font-weight: bold;">Будущие профессии</h1>
+            <br>
+            <div class="row">
+                <div class="col-md-12 col-xs-12"><img src="Images/prof_before.jpg" class="img-responsive"></div>
+            </div>
+            <br>
+            <div class="row text-left" style="font-size: 17px">
+                <div class="col-md-4">
+                    <p><h3>Инженер-конструктор</h3></p>
+                    Этот специалист является настоящим изобретателем, он создаёт проекты (от мелких деталей до целых конструкций), отвечает за их испытание и способность надежно работать. Работа инженера-конструктора охватывает почти все стадии процесса разработки электронных средств, начиная с технического задания на разработку изделия, эскизного и технического проектирования и заканчивая его испытаниями и производством.
+                </div>
+                <div class="col-md-4">
+                    <p><h3>Инженер-технолог</h3></p>
+                    Инженер-технолог - это специалист, который занимается организацией производственного процесса или разработкой какой-либо технологии. В обязанности входят работы по разработке систем автоматизированного управления технологическими процессами, комплектованию оборудования, необходимого для осуществления технологического процесса, выбору наилучших режимов его работы, подборе базовых способов проверки качества.
+                </div>
+                <div class="col-md-4">
+                    <p><h3>Инженер-электроник</h3></p>
+                    Работа инженера-электроника может включать разработку структурных и функциональных схем электронных систем и комплексов, принципиальных схем устройств с использованием средств компьютерного проектирования, проведением проектных расчетов и технико-экономическим обоснованием принимаемых решений.
+                </div>
+                <a name="jobs"></a>
+            </div>
+            <br>
+        </div>
+    </div>
+    <br><br>
+    <div class="row text-center">
+        <div class="container">
+            <h1 style="font-size: 40px;font-weight: bold;">Cферы работы выпускников</h1>
+            <br>
+            <div class="row">
+                <div class="col-md-12 col-xs-12"><img src="Images/prof_before2.jpg" class="img-responsive"></div>
+            </div>
+            <br>
+            <div class="row text-left" id="spheres" style="font-size: 17px">
+                <div class="col-md-4">
+                    <h3>Радиотехника</h3>
+                    <br>
+                    Старейшее направление науки и техники, специалисты которого всегда будут нужны работодателям. Навигация и радио, телекоммуникационные системы и спутники, наука и армия, компьютеры и телевидение. Потребность рынка в специалистах данного направления не иссякнет еще очень долгое время.
+                    <br><br>
+                    <p>Средняя зарплата радиотехника в России — <b class="score">70 000</b> рублей в месяц.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Электронные устройства</h3>
+                    <br>
+                    Стоит ли писать о необходимости и востребованности специалистов в сфере электроники? С каждым годом наша в нашу жизнь внедряется все больше и больше электронных устройств, а, соответственно, и рынку всегда будут нужны специалисты в данной сфере.
+                    <br><br><br>
+                    <p>Средняя зарплата инженера-электрика в России — <b class="score">60 000</b> рублей в месяц.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Нанотехнологии</h3>
+                    <br>
+                    Одно из самых молодых и, в то же время, самых перспективных направлений развития науки и техники. Армия и техника, медицина и экология, инфраструктура и энергетика — во всех этих сферах уже применяются нанотехнологии. Специалист данной отрасли будет востребован не только в России, но и везде в мире.
+                    <br><br>
+                    <p>Средняя зарплата нанотехнолога в России — <b class="score">44 800</b> рублей в месяц.</p>
+                </div>
+                <a name="passing-score"></a>
+            </div>
+        </div>
+    </div>
+    <br><br>
     <div class="row text-center">
         <div class="container" style="max-width: 700px">
             <h1 style="font-size: 40px;font-weight: bold;">Места работы выпускников</h1>
@@ -222,24 +312,22 @@
     <br>
     <div class="row">
         <div class="container" id="partners">
-            <div class="row">
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-12 col-md-3">
                     <a href="http://www.npoa.ru/" target="_blank" title="ОАО «Научно-производственное объединение автоматики имени академика Н.А. Семихатова»"><img src="Images/prof1.png" class="img-responsive"></a>
                 </div>
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-12 col-md-3">
                     <a href="http://www.zra.ru/" target="_blank" title="ОАО «Завод радиоаппаратуры»"><img src="Images/prof2.png" class="img-responsive"></a>
                 </div>
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-12 col-md-3">
                     <a href="http://www.vektor.ru/" target="_blank" title="АО «Уральское производственное предприятие «Вектор»"><img src="Images/prof3.jpg" class="img-responsive"></a>
                 </div>
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-12 col-md-3">
                     <a target="_blank" href="http://www.shvabe.com/about/company/uralskiy-optiko-mekhanicheskiy-zavod/" title="АО «Производственное объединение «Уральский оптико-механический завод» имени Э.С. Яламова»"><img src="Images/prof4.jpg" class="img-responsive"></a>
                 </div>
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-12 col-md-3">
                     <a href="http://www.okb-novator.ru/News" target="_blank" title="АО Опытное конструкторское бюро «НОВАТОР»"><img src="Images/prof5.png" class="img-responsive"></a>
                 </div>
                 <a name="tutors"></a>
-            </div>
         </div>
     </div>
     <br><br><br>
@@ -249,7 +337,7 @@
             <br><br><br>
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor1.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor1.png" class="img-responsive">
                     <h3>Батуев Владимир Петрович</h3>
                     <p>Кандидат технических наук</p>
                     <ul class="text-left">
@@ -259,7 +347,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor2.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor2.png" class="img-responsive">
                     <h3>Важенин Владимир Григорьевич</h3>
                     <p>Кандидат технических наук</p>
                     <ul class="text-left">
@@ -269,7 +357,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor3.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor3.png" class="img-responsive">
                     <h3>Гусев Андрей Викторович</h3>
                     <ul class="text-left">
                         <li>Вычислительная техника и информационные технологии</li>
@@ -281,7 +369,7 @@
             <br>
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor4.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor4.png" class="img-responsive">
                     <h3>Дурнаков Андрей Адольфович</h3>
                     <ul class="text-left">
                         <li>Электроника</li>
@@ -291,7 +379,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor5.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor5.png" class="img-responsive">
                     <h3>Корнилов Илья Николаевич</h3>
                     <p>Доцент, Старший научный сотрудник, кандидат технических наук</p>
                     <ul class="text-left">
@@ -302,7 +390,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor6.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor6.png" class="img-responsive">
                     <h3>Матвиенко Виталий Александрович</h3>
                     <p>Доцент</p>
                     <ul class="text-left">
@@ -314,7 +402,7 @@
             <br>
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor7.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor7.png" class="img-responsive">
                     <h3>Плохих Олег Васильевич</h3>
                     <p>Старший преподаватель, Инженер 1 категории</p>
                     <ul class="text-left">
@@ -324,7 +412,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor8.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor8.png" class="img-responsive">
                     <h3>Черных Олег Авитисович</h3>
                     <p>Старший преподаватель, Директор</p>
                     <ul class="text-left">
@@ -334,7 +422,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img src="Images/tutor9.png" class="img-responsive img-circle" style="margin-left: 70px;">
+                    <img src="Images/tutor9.png" class="img-responsive">
                     <h3>Шегал Анна Айзиковна</h3>
                     <p>Доцент</p>
                     <ul class="text-left">
@@ -349,9 +437,36 @@
     </div>
     <br><br><br>
     <div class="row">
-        <div class="container">
-            <div class="col-md-6" style="font-size: 20px">
-                <h1 style="font-size: 35px">Об институте</h1><br>
+        <div class="container text-center" style="font-size: 20px">
+            <h1>Об институте</h1><br>
+            <p>Не стоит забывать о том, что институт — это не только учеба, но и активная студенческая жизнь. В УРФУ существует мероприятие для каждого: хакатоны, конференции разработчиков, спортивные соревнования, дебюты первокурсников и многое-многое другое.</p>
+            <div class="content">
+                <div id="rg-gallery" class="rg-gallery">
+                    <div class="rg-thumbs">
+                        <!-- Elastislide Carousel Thumbnail Viewer -->
+                        <div class="es-carousel-wrapper">
+                            <div class="es-nav">
+                                <span class="es-nav-prev">Previous</span>
+                                <span class="es-nav-next">Next</span>
+                            </div>
+                            <div class="es-carousel">
+                                <ul>
+                                    <li><a href="#"><img src="Images/galery1.jpg" data-large="Images/galery1.jpg" alt="image01"/></a></li>
+                                    <li><a href="#"><img src="Images/galery2.jpg" data-large="Images/galery2.jpg" alt="image02"/></a></li>
+                                    <li><a href="#"><img src="Images/galery3.jpg" data-large="Images/galery3.jpg" alt="image03"/></a></li>
+                                    <li><a href="#"><img src="Images/galery4.jpg" data-large="Images/galery4.jpg" alt="image04"/></a></li>
+                                    <li><a href="#"><img src="Images/galery5.jpg" data-large="Images/galery5.jpg" alt="image05"/></a></li>
+                                    <li><a href="#"><img src="Images/galery6.jpg" data-large="Images/galery6.jpg" alt="image06"/></a></li>
+                                    <li><a href="#"><img src="Images/galery7.jpg" data-large="Images/galery7.jpg" alt="image07"/></a></li>
+                                    <li><a href="#"><img src="Images/galery8.jpg" data-large="Images/galery8.jpg" alt="image08"/></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- rg-thumbs -->
+                </div><!-- rg-gallery -->
+            </div><!-- content -->
+            <br>
+            <div class="col-md-6">
                 <p>IT, информационная безопасность, радиоэлектроника — это только малый перечень того, где востребованы молодые люди с дипломами этого института. На протяжении учебных лет их поддерживают как преподаватели, дающие актуальные знания, так и партнеры, обеспечивающие базу для практик и проектов. Выпускник ИРИТ-РтФ — высококлассный специалист с широким кругозором, знающий все о современных и перспективных технологиях.</p>
                 <br>
                 <p>Институт владеет новейшим техническим оборудованием на сумму более чем в <b class="score">1 000 000</b> долларов.</p>
@@ -361,8 +476,8 @@
             </div>
         </div>
     </div>
-    <br><br>
 </div>
+<br><br>
 <div class="row text-center" style="background: rgba(190,190,190,0.46);">
     <div class="container" style="max-width: 700px;">
         <h3>Наши контакты:</h3>
@@ -373,11 +488,18 @@
     </div>
 </div>
 
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<!--Slide-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="slider/js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="slider/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="slider/js/jquery.elastislide.js"></script>
+<script type="text/javascript" src="slider/js/gallery.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 ﻿.navbar{
-    background: rgba(0, 166, 7, 0.72);
+    background: rgb(0, 166, 7);
 }
 
 #menu li a{
@@ -7,7 +7,8 @@
 }
 
 body{
-    background: url("Images/background.jpg");
+    /*background: url("Images/background.jpg");*/
+    overflow-x: hidden; 
 }
 
 h1, h3{
@@ -33,7 +34,14 @@ h1, h3{
     content: "— ";
 }
 
+.tutors img{
+    margin-left: 40px;
+}
+
 .score{
     font-weight: 600;
     color: #00a607;
+}
+#header div.score{
+    font-size: 30px;
 }
