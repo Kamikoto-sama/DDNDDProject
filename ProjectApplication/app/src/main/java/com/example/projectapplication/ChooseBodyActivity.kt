@@ -55,6 +55,6 @@ class ChooseBodyActivity : AppCompatActivity() {
             choose_body_view_pager.currentItem = 2
         }
 
-        /* SET ONCLICKLISTENERS FOR 12 PICTURES ON SLIDES*/
+        // todo: SET ONCLICKLISTENERS FOR 12 PICTURES ON SLIDES
     }
 }
