@@ -54,7 +54,8 @@ class ChooseBodyActivity : AppCompatActivity() {
         slider3_btn.setOnClickListener {
             choose_body_view_pager.currentItem = 2
         }
-
-        // todo: SET ONCLICKLISTENERS FOR 12 PICTURES ON SLIDES
     }
+
+    
+
 }

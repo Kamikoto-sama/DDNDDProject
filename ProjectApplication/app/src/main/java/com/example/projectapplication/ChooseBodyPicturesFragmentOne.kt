@@ -7,18 +7,38 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_choose_body.*
 import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_one.*
 
 
-class ChooseBodyPicturesFragmentOne : Fragment(), View.OnClickListener {
-    override fun onClick(v: View?) {
-when(v?.id){
-
-}
-    }
+class ChooseBodyPicturesFragmentOne : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var viewPagerView : View = inflater!!.inflate(R.layout.fragment_choose_body_pictures_fragment_one,container,false)
-        return viewPagerView
+        var v = inflater.inflate(R.layout.fragment_choose_body_pictures_fragment_one,null)
+        var picture1 : ImageView = v.findViewById(R.id.choose_body_picture1)
+        var picture2 : ImageView = v.findViewById(R.id.choose_body_picture2)
+        var picture3 : ImageView = v.findViewById(R.id.choose_body_picture3)
+        var picture4 : ImageView = v.findViewById(R.id.choose_body_picture4)
+        picture1.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture1)
+            }
+        })
+        picture2.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture2)
+            }
+        })
+        picture3.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture3)
+            }
+        })
+        picture4.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture4)
+            }
+        })
+        return v
     }
 }
