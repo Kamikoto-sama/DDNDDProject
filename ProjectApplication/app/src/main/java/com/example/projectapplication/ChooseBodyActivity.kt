@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_two
 
 class ChooseBodyActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
-    var currentCouple = 1
+    lateinit var bodyType: String
     val manager = supportFragmentManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +56,10 @@ class ChooseBodyActivity : AppCompatActivity() {
         }
     }
 
-    
+
+    fun defineBodyType(height : Int, weight:Int):String{
+        // todo определить тип тела исходя из веса и роста(хз как пока что) и запихуить его в интент для главной активити
+        return ""
+    }
 
 }
