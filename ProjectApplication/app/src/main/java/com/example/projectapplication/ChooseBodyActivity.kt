@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_choose_body.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_one.*
@@ -18,13 +19,24 @@ import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_two
 class ChooseBodyActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     lateinit var bodyType: String
+    lateinit var intentToSend : Intent
     val manager = supportFragmentManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_body)
+        intentToSend = Intent(this, MainActivity::class.java)
+
         go_to_main_btn.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            if (intent.getStringExtra("bodyType") != null) {
+                intentToSend.putExtra("bodyType", intent.getStringExtra("bodyType"))
+
+            intentToSend.putExtra("weight", intent.extras.getInt("weight"))
+            intentToSend.putExtra("height", intent.extras.getInt("height"))
+            startActivity(intentToSend)
             finish()
+        } else{
+                Toast.makeText(this,"Выбери себе тело чтобы продолжить",Toast.LENGTH_SHORT).show()
+            }
         }
         var adapter = ChooseBodySliderAdapter(supportFragmentManager)
         adapter.addFragment(ChooseBodyPicturesFragmentOne())
@@ -54,10 +66,11 @@ class ChooseBodyActivity : AppCompatActivity() {
         slider3_btn.setOnClickListener {
             choose_body_view_pager.currentItem = 2
         }
+
     }
 
 
-    fun defineBodyType(height : Int, weight:Int):String{
+    fun defineBodyType(height: Int, weight: Int): String {
         // todo определить тип тела исходя из веса и роста(хз как пока что) и запихуить его в интент для главной активити
         return ""
     }
