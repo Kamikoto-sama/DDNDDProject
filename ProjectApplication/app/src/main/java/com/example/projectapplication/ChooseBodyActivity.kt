@@ -19,23 +19,28 @@ import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_two
 class ChooseBodyActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     lateinit var bodyType: String
-    lateinit var intentToSend : Intent
+    lateinit var intentToSend: Intent
     val manager = supportFragmentManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_body)
         intentToSend = Intent(this, MainActivity::class.java)
-
+        preferences = getSharedPreferences("pref", Context.MODE_PRIVATE)
+        if (!preferences.getBoolean("isNeedToLaunch", true)) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
         go_to_main_btn.setOnClickListener {
             if (intent.getStringExtra("bodyType") != null) {
                 intentToSend.putExtra("bodyType", intent.getStringExtra("bodyType"))
 
-            intentToSend.putExtra("weight", intent.extras.getInt("weight"))
-            intentToSend.putExtra("height", intent.extras.getInt("height"))
-            startActivity(intentToSend)
-            finish()
-        } else{
-                Toast.makeText(this,"Выбери себе тело чтобы продолжить",Toast.LENGTH_SHORT).show()
+                intentToSend.putExtra("weight", intent.extras.getInt("weight"))
+                intentToSend.putExtra("height", intent.extras.getInt("height"))
+                preferences.edit().putBoolean("isNeedToLaunch", false).apply()
+                startActivity(intentToSend)
+                finish()
+            } else {
+                Toast.makeText(this, "Выбери себе тело чтобы продолжить", Toast.LENGTH_SHORT).show()
             }
         }
         var adapter = ChooseBodySliderAdapter(supportFragmentManager)
@@ -43,7 +48,6 @@ class ChooseBodyActivity : AppCompatActivity() {
         adapter.addFragment(ChooseBodyPicturesFragmentTwo())
         adapter.addFragment(ChooseBodyPicturesFragmentThree())
         choose_body_view_pager.adapter = adapter
-        preferences = getSharedPreferences("pref", Context.MODE_PRIVATE)
         lateinit var weight: String //
         lateinit var height: String //
         if (intent.extras != null) {

@@ -30,28 +30,28 @@ class ChooseBodyPicturesFragmentTwo : Fragment() {
         picture1.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture5)
-                activity!!.intent.putExtra("bodyType","body5")
+                activity!!.intent.putExtra("bodyType","body_mid_1")
                 activity!!.intent.putExtra("isBodyChosen", true)
             }
         })
         picture2.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture6)
-                activity!!.intent.putExtra("bodyType","body6")
+                activity!!.intent.putExtra("bodyType","body_mid_2")
                 activity!!.intent.putExtra("isBodyChosen", true)
             }
         })
         picture3.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture7)
-                activity!!.intent.putExtra("bodyType","body7")
+                activity!!.intent.putExtra("bodyType","body_mid_3")
                 activity!!.intent.putExtra("isBodyChosen", true)
             }
         })
         picture4.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture8)
-                activity!!.intent.putExtra("bodyType","body8")
+                activity!!.intent.putExtra("bodyType","body_mid_4")
                 activity!!.intent.putExtra("isBodyChosen", true)
             }
         })

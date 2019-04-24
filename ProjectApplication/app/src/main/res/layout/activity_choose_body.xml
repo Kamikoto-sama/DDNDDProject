@@ -19,14 +19,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/slider1_btn"
-            android:src="@drawable/first_image"
-            android:layout_marginTop="10dp"/>
-
+            android:layout_marginTop="10dp"
+            android:src="@drawable/nick_fury"/>
     <ImageView
             android:id="@+id/slider1_btn"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/btn_image"
+            android:src="@drawable/body_menu_skin"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.25"
@@ -39,7 +38,7 @@
             android:id="@+id/slider2_btn"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/btn_image"
+            android:src="@drawable/body_menu_mid"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.25"
@@ -54,7 +53,7 @@
             android:id="@+id/slider3_btn"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/btn_image"
+            android:src="@drawable/body_menu_big"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.25"
