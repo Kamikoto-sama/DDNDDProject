@@ -9,13 +9,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".TrainingActivity">
+        <activity android:name=".TrainingActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ChooseBodyActivity">
+        <activity android:name=".ChooseBodyActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".FirstLaunchSliderActivity">
+        <activity android:name=".FirstLaunchSliderActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

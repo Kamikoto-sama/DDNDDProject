@@ -7,37 +7,26 @@
                                              tools:context=".FirstLaunchSlideThree">
 
     <TextView
-            android:id="@+id/enter_data"
+            android:id="@+id/enter_height_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Нам нужны твои данные"
+            android:text="Выбери свой рост"
             android:textSize="30sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="60dp"
             android:gravity="center"/>
-    <TextView
-            android:id="@+id/enter_height_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Введите свой рост"
-            android:textSize="30sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enter_data"
-            android:layout_marginTop="60dp"
-            android:gravity="center"/>
 
-    <EditText
+    <NumberPicker
             android:id="@+id/enter_height"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enter_height_label"
-            android:layout_marginTop="50dp"
             android:gravity="center"
             android:inputType="number"/>
 
@@ -45,7 +34,7 @@
             android:id="@+id/enter_weight_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Введите свой вес"
+            android:text="Выбери свой вес"
             android:textSize="30sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -53,17 +42,17 @@
             android:layout_marginTop="60dp"
             android:gravity="center"/>
 
-    <EditText
+    <NumberPicker
             android:id="@+id/enter_weight"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.4"
+
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enter_weight_label"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:inputType="number"/>
+            android:gravity="center"/>
 
 
 </android.support.constraint.ConstraintLayout>

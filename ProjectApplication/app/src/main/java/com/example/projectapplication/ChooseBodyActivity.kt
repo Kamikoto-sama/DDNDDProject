@@ -3,6 +3,7 @@ package com.example.projectapplication
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -21,6 +22,7 @@ class ChooseBodyActivity : AppCompatActivity() {
     lateinit var bodyType: String
     lateinit var intentToSend: Intent
     val manager = supportFragmentManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_body)

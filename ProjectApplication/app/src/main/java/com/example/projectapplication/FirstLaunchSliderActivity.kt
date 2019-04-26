@@ -65,9 +65,9 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
                     intro_btn_next.text = "Готово"
                     intro_btn_next.setOnClickListener {
                         var introIntent = Intent(activity, ChooseBodyActivity::class.java)
-                        if(enter_height.text!=null && enter_weight.text!=null) {
-                            introIntent.putExtra("height",enter_height.text.toString().toInt())
-                            introIntent.putExtra("weight",enter_weight.text.toString().toInt())
+                        if(enter_height.value!=null && enter_weight.value!=null) {
+                            introIntent.putExtra("height",enter_height.value.toString().toInt())
+                            introIntent.putExtra("weight",enter_weight.value.toString().toInt())
                             startActivity(introIntent)
                             finish()
                             preferences
