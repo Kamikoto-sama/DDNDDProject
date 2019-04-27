@@ -56,7 +56,7 @@ class ChooseBodyActivity : AppCompatActivity() {
         if (intent.extras != null) {
             weight = intent.extras.getInt("weight").toString()
             height = intent.extras.getInt("height").toString()
-            defineBodyType(height.toDouble(),weight.toInt())
+            defineBodyType(height.toDouble(), weight.toInt())
             preferences
                 .edit()
                 .putString("weight", weight)
@@ -65,32 +65,41 @@ class ChooseBodyActivity : AppCompatActivity() {
         } else {
             weight = preferences.getString("weight", "0").toString()
             height = preferences.getString("height", "0").toString()
-            defineBodyType(height.toDouble(),weight.toInt())
+            defineBodyType(height.toDouble(), weight.toInt())
         }
         slider1_btn.setOnClickListener {
             choose_body_view_pager.currentItem = 0
-            pictureClickAnimation(slider1_btn,this)
+            pictureClickAnimation(slider1_btn, this)
         }
         slider2_btn.setOnClickListener {
             choose_body_view_pager.currentItem = 1
-            pictureClickAnimation(slider2_btn,this)
+            pictureClickAnimation(slider2_btn, this)
         }
         slider3_btn.setOnClickListener {
             choose_body_view_pager.currentItem = 2
-            pictureClickAnimation(slider3_btn,this)
+            pictureClickAnimation(slider3_btn, this)
         }
 
     }
 
 
     fun defineBodyType(height: Double, weight: Int) {
-        var metersHeight : Double = height/100
-        val formulaResult : Double = (weight / metersHeight / metersHeight)
-        lateinit var bodyType : String
+        var metersHeight: Double = height / 100
+        val formulaResult: Double = (weight / metersHeight / metersHeight)
+        lateinit var bodyType: String
         when {
-            formulaResult < 18.5 -> bodyType = "Эктоморф"
-            formulaResult in 18.5..24.9 -> bodyType = "Мезоморф"
-            formulaResult > 25 -> bodyType = "Эндоморф"
+            formulaResult < 18.5 -> {
+                bodyType = "Эктоморф"
+                choose_body_view_pager.currentItem = 0
+            }
+            formulaResult in 18.5..24.9 -> {
+                bodyType = "Мезоморф"
+                choose_body_view_pager.currentItem = 1
+            }
+            formulaResult > 25 -> {
+                bodyType = "Эндоморф"
+                choose_body_view_pager.currentItem = 2
+            }
         }
         chosen_body_label.text = "Рекомендуемый тип: $bodyType"
     }
