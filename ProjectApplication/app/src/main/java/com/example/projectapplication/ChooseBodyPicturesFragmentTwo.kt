@@ -1,60 +1,32 @@
 package com.example.projectapplication
 
-
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
-
+import com.example.projectapplication.ImageViewOnClickHandler.Companion.bodyPictureClickHandle
 
 class ChooseBodyPicturesFragmentTwo : Fragment() {
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var v = inflater.inflate(R.layout.fragment_choose_body_pictures_fragment_two,null)
-        var picture1 : ImageView = v.findViewById(R.id.choose_body_picture5)
-        var picture2 : ImageView = v.findViewById(R.id.choose_body_picture6)
-        var picture3 : ImageView = v.findViewById(R.id.choose_body_picture7)
-        var picture4 : ImageView = v.findViewById(R.id.choose_body_picture8)
-        picture1.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture5)
-                activity!!.intent.putExtra("bodyType","body_mid_1")
-                activity!!.intent.putExtra("isBodyChosen", true)
-            }
-        })
-        picture2.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture6)
-                activity!!.intent.putExtra("bodyType","body_mid_2")
-                activity!!.intent.putExtra("isBodyChosen", true)
-            }
-        })
-        picture3.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture7)
-                activity!!.intent.putExtra("bodyType","body_mid_3")
-                activity!!.intent.putExtra("isBodyChosen", true)
-            }
-        })
-        picture4.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                activity!!.findViewById<ImageView>(R.id.chosen_body_image).setImageResource(R.drawable.choose_body_picture8)
-                activity!!.intent.putExtra("bodyType","body_mid_4")
-                activity!!.intent.putExtra("isBodyChosen", true)
-            }
-        })
+        val v = inflater.inflate(R.layout.fragment_choose_body_pictures_fragment_two, null)
+        val picture1: ImageView = v.findViewById(R.id.choose_body_picture5)
+        val picture2: ImageView = v.findViewById(R.id.choose_body_picture6)
+        val picture3: ImageView = v.findViewById(R.id.choose_body_picture7)
+        val picture4: ImageView = v.findViewById(R.id.choose_body_picture8)
+        picture1.setOnClickListener { v ->
+            bodyPictureClickHandle(R.drawable.choose_body_picture5,"Мезоморф 1", activity!!, picture1, v)
+        }
+        picture2.setOnClickListener { v ->
+            bodyPictureClickHandle(R.drawable.choose_body_picture6,"Мезоморф 2", activity!!, picture2, v)
+        }
+        picture3.setOnClickListener { v ->
+            bodyPictureClickHandle(R.drawable.choose_body_picture7,"Мезоморф 3", activity!!, picture3, v)
+        }
+        picture4.setOnClickListener { v ->
+            bodyPictureClickHandle(R.drawable.choose_body_picture8,"Мезоморф 4", activity!!, picture4, v)
+        }
         return v
     }
 }

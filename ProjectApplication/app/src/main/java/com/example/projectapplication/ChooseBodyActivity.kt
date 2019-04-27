@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.projectapplication.AnimationAdapter.Companion.pictureClickAnimation
 import kotlinx.android.synthetic.main.activity_choose_body.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_one.*
@@ -55,30 +56,43 @@ class ChooseBodyActivity : AppCompatActivity() {
         if (intent.extras != null) {
             weight = intent.extras.getInt("weight").toString()
             height = intent.extras.getInt("height").toString()
+            defineBodyType(height.toDouble(),weight.toInt())
             preferences
                 .edit()
-                //.putString("weight", weight_text.text.toString())
-                //.putString("height", height_text.text.toString())
+                .putString("weight", weight)
+                .putString("height", height)
                 .apply()
         } else {
-
+            weight = preferences.getString("weight", "0").toString()
+            height = preferences.getString("height", "0").toString()
+            defineBodyType(height.toDouble(),weight.toInt())
         }
         slider1_btn.setOnClickListener {
             choose_body_view_pager.currentItem = 0
+            pictureClickAnimation(slider1_btn,this)
         }
         slider2_btn.setOnClickListener {
             choose_body_view_pager.currentItem = 1
+            pictureClickAnimation(slider2_btn,this)
         }
         slider3_btn.setOnClickListener {
             choose_body_view_pager.currentItem = 2
+            pictureClickAnimation(slider3_btn,this)
         }
 
     }
 
 
-    fun defineBodyType(height: Int, weight: Int): String {
-        // todo определить тип тела исходя из веса и роста(хз как пока что) и запихуить его в интент для главной активити
-        return ""
+    fun defineBodyType(height: Double, weight: Int) {
+        var metersHeight : Double = height/100
+        val formulaResult : Double = (weight / metersHeight / metersHeight)
+        lateinit var bodyType : String
+        when {
+            formulaResult < 18.5 -> bodyType = "Эктоморф"
+            formulaResult in 18.5..24.9 -> bodyType = "Мезоморф"
+            formulaResult > 25 -> bodyType = "Эндоморф"
+        }
+        chosen_body_label.text = "Рекомендуемый тип: $bodyType"
     }
 
 }

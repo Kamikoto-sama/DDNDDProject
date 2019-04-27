@@ -37,18 +37,18 @@ class MainActivity : AppCompatActivity() {
 
         body_picture.setImageResource(
             when (bodyType) {
-                "body_skin_1" -> R.drawable.choose_body_picture1
-                "body_skin_2" -> R.drawable.choose_body_picture2
-                "body_skin_3" -> R.drawable.choose_body_picture3
-                "body_skin_4" -> R.drawable.choose_body_picture4
-                "body_mid_1" -> R.drawable.choose_body_picture5
-                "body_mid_2" -> R.drawable.choose_body_picture6
-                "body_mid_3" -> R.drawable.choose_body_picture7
-                "body_mid_4" -> R.drawable.choose_body_picture8
-                "body_big_1" -> R.drawable.choose_body_picture9
-                "body_big_2" -> R.drawable.choose_body_picture10
-                "body_big_3" -> R.drawable.choose_body_picture11
-                "body_big_4" -> R.drawable.choose_body_picture12
+                "Эктоморф 1" -> R.drawable.choose_body_picture1
+                "Эктоморф 2" -> R.drawable.choose_body_picture2
+                "Эктоморф 3" -> R.drawable.choose_body_picture3
+                "Эктоморф 4" -> R.drawable.choose_body_picture4
+                "Мезоморф 1" -> R.drawable.choose_body_picture5
+                "Мезоморф 2" -> R.drawable.choose_body_picture6
+                "Мезоморф 3" -> R.drawable.choose_body_picture7
+                "Мезоморф 4" -> R.drawable.choose_body_picture8
+                "Эндоморф 1" -> R.drawable.choose_body_picture9
+                "Эндоморф 2" -> R.drawable.choose_body_picture10
+                "Эндоморф 3" -> R.drawable.choose_body_picture11
+                "Эндоморф 4" -> R.drawable.choose_body_picture12
                 else -> 0
             }
         )
