@@ -20,9 +20,7 @@ import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_two
 
 class ChooseBodyActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
-    lateinit var bodyType: String
     lateinit var intentToSend: Intent
-    val manager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,8 +81,8 @@ class ChooseBodyActivity : AppCompatActivity() {
     }
 
 
-    fun defineBodyType(height: Double, weight: Int) {
-        var metersHeight: Double = height / 100
+    private fun defineBodyType(height: Double, weight: Int) {
+        val metersHeight: Double = height / 100
         val formulaResult: Double = (weight / metersHeight / metersHeight)
         lateinit var bodyType: String
         when {

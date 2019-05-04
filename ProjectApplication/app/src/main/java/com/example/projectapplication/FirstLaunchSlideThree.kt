@@ -25,6 +25,8 @@ class FirstLaunchSlideThree : Fragment() {
         weightPicker.maxValue = 120
         heightPicker.value = 170
         weightPicker.value = 70
+        heightPicker.wrapSelectorWheel = false
+        weightPicker.wrapSelectorWheel = false
         return v
     }
 

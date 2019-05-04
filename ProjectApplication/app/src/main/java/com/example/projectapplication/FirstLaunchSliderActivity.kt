@@ -13,25 +13,16 @@ import kotlinx.android.synthetic.main.fragment_first_launch_slide_three.*
 
 class FirstLaunchSliderActivity : AppCompatActivity() {
 
-    val slideOne = FirstLaunchSlideOne()
-    val slideTwo = FirstLaunchSlideTwo()
-    val slideThree = FirstLaunchSlideThree()
-
     lateinit var adapter: FirstLaunchSliderAdapter
     lateinit var activity: Activity
-
     lateinit var preferences: SharedPreferences
     val pref_show_intro = "Intro"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_launch_slider)
-
-        adapter = FirstLaunchSliderAdapter(supportFragmentManager)
-        adapter.addFragment(slideOne)
-        adapter.addFragment(slideTwo)
-        adapter.addFragment(slideThree)
         activity = this
+        makeAdapter()
         preferences = getSharedPreferences("IntroSlider",Context.MODE_PRIVATE)
         if(!preferences.getBoolean(pref_show_intro,true)){
             startActivity(Intent(activity,ChooseBodyActivity::class.java))
@@ -65,16 +56,14 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
                     intro_btn_next.text = "Готово"
                     intro_btn_next.setOnClickListener {
                         var introIntent = Intent(activity, ChooseBodyActivity::class.java)
-                        if(enter_height.value!=null && enter_weight.value!=null) {
-                            introIntent.putExtra("height",enter_height.value.toString().toInt())
-                            introIntent.putExtra("weight",enter_weight.value.toString().toInt())
-                            startActivity(introIntent)
-                            finish()
-                            preferences
-                                .edit()
-                                .putBoolean(pref_show_intro, false)
-                                .apply()
-                        }
+                        introIntent.putExtra("height",enter_height.value.toString().toInt())
+                        introIntent.putExtra("weight",enter_weight.value.toString().toInt())
+                        startActivity(introIntent)
+                        finish()
+                        preferences
+                            .edit()
+                            .putBoolean(pref_show_intro, false)
+                            .apply()
                     }
                 } else {
                     intro_btn_next.text = "далее"
@@ -103,6 +92,13 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    fun makeAdapter(){
+        adapter = FirstLaunchSliderAdapter(supportFragmentManager)
+        adapter.addFragment(FirstLaunchSlideOne())
+        adapter.addFragment(FirstLaunchSlideTwo())
+        adapter.addFragment(FirstLaunchSlideThree())
     }
 
 
