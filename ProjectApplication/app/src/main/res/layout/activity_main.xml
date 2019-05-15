@@ -5,7 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:background="@drawable/first_launch_slider_background">
 
     <TextView
             android:id="@+id/title_text"
@@ -43,7 +44,7 @@
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.3"
             app:layout_constraintHeight_percent="0.2"
-            app:cpbProgressColor="@color/red"
+            app:cpbProgressColor="#0af"
             app:cpbBackgroundColor="#0000"
             app:cpbProgressWidth="20dp"
             app:cpbProgressValue="50"
@@ -60,8 +61,8 @@
             app:layout_constraintRight_toRightOf="@id/progress_days_bar"
             app:layout_constraintTop_toTopOf="@id/progress_days_bar"
             app:layout_constraintBottom_toBottomOf="@id/progress_days_bar"
-            android:layout_marginBottom="20dp"
-    />
+            android:layout_marginBottom="20dp"/>
+
     <com.brkckr.circularprogressbar.CircularProgressBar
             android:id="@+id/progress_exercises_bar"
             android:layout_width="0dp"
@@ -70,7 +71,7 @@
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintHeight_percent="0.3"
-            app:cpbProgressColor="@color/red"
+            app:cpbProgressColor="#0af"
             app:cpbBackgroundColor="#0000"
             app:cpbProgressValue="70"
             app:cpbProgressWidth="20dp"
@@ -87,202 +88,199 @@
             app:layout_constraintRight_toRightOf="@id/progress_exercises_bar"
             app:layout_constraintTop_toTopOf="@id/progress_exercises_bar"
             app:layout_constraintBottom_toBottomOf="@id/progress_exercises_bar"
-            android:layout_marginBottom="20dp"
-    />
-
-    <android.support.constraint.ConstraintLayout
-            android:id="@+id/first_buttons_layout"
-            android:layout_width="match_parent" android:layout_height="0dp"
-            app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@id/progress_exercises_bar"
-            android:background="@drawable/activity_background_gradient_1">
+            android:layout_marginBottom="20dp"/>
+    <LinearLayout
+            android:id="@+id/workout_btn_layout_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/progress_exercises_bar">
         <Button
-                android:id="@+id/workout_choose_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_1"
+                style="@style/workout_btn"
                 android:text="1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_2"
+                style="@style/workout_btn"
                 android:text="2"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_1"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_3"
+                style="@style/workout_btn"
                 android:text="3"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_2"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_4"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_4"
+                style="@style/workout_btn"
                 android:text="4"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_3"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_5"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_5"
+                style="@style/workout_btn"
                 android:text="5"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_4"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_6"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_6"
+                style="@style/workout_btn"
                 android:text="6"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_5"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-            android:id="@+id/second_buttons_layout"
-            android:layout_width="match_parent" android:layout_height="0dp"
-            app:layout_constraintHeight_default="percent"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toBottomOf="@id/first_buttons_layout"
-            android:background="@drawable/activity_background_gradient_1">
+        />
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/workout_btn_layout_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/workout_btn_layout_1">
         <Button
-                android:id="@+id/workout_choose_7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_7"
+                style="@style/workout_btn"
                 android:text="7"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_8"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_8"
+                style="@style/workout_btn"
                 android:text="8"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_7"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_9"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_9"
+                style="@style/workout_btn"
                 android:text="9"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_8"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_10"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_10"
+                style="@style/workout_btn"
                 android:text="10"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_9"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_11"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_11"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_11"
+                style="@style/workout_btn"
                 android:text="11"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_10"
-                app:layout_constraintRight_toLeftOf="@id/workout_choose_12"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        />
         <Button
-                android:id="@+id/workout_choose_12"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.15"
-                android:background="@drawable/choose_workout_button_shape"
+                android:id="@+id/workout_btn_12"
+                style="@style/workout_btn"
                 android:text="12"
-                app:layout_constraintLeft_toRightOf="@id/workout_choose_11"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-    </android.support.constraint.ConstraintLayout>
-    <com.kevalpatel2106.rulerpicker.RulerValuePicker
-            android:id="@+id/fuckfuckfuck"
+        />
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/workout_btn_layout_3"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_orange_dark"
-            app:indicator_color="@android:color/white"
-            app:indicator_interval="14dp"
-            app:indicator_width="2dp"
-            app:notch_color="@android:color/white"
-            app:ruler_text_size="6sp"
-            app:max_value="147"
-            app:min_value="0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/second_buttons_layout"
-            android:layout_marginTop="10dp"/>
-
-    <com.kevalpatel2106.rulerpicker.RulerValuePicker
-            android:id="@+id/fuckfuckfuckfuck"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/workout_btn_layout_2">
+        <Button
+                android:id="@+id/workout_btn_13"
+                style="@style/workout_btn"
+                android:text="13"
+        />
+        <Button
+                android:id="@+id/workout_btn_14"
+                style="@style/workout_btn"
+                android:text="14"
+        />
+        <Button
+                android:id="@+id/workout_btn_15"
+                style="@style/workout_btn"
+                android:text="15"
+        />
+        <Button
+                android:id="@+id/workout_btn_16"
+                style="@style/workout_btn"
+                android:text="16"
+        />
+        <Button
+                android:id="@+id/workout_btn_17"
+                style="@style/workout_btn"
+                android:text="17"
+        />
+        <Button
+                android:id="@+id/workout_btn_18"
+                style="@style/workout_btn"
+                android:text="18"
+        />
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/workout_btn_layout_4"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#a0aa0a"
-            app:indicator_color="@android:color/white"
-            app:indicator_interval="14dp"
-            app:indicator_width="2dp"
-            app:max_value="147"
-            app:min_value="0"
-            app:notch_color="@android:color/white"
-            app:ruler_text_size="6sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fuckfuckfuck"
-            android:layout_marginTop="20dp"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/workout_btn_layout_3">
+        <Button
+                android:id="@+id/workout_btn_19"
+                style="@style/workout_btn"
+                android:text="19"
+        />
+        <Button
+                android:id="@+id/workout_btn_20"
+                style="@style/workout_btn"
+                android:text="20"
+        />
+        <Button
+                android:id="@+id/workout_btn_21"
+                style="@style/workout_btn"
+                android:text="21"
+        />
+        <Button
+                android:id="@+id/workout_btn_22"
+                style="@style/workout_btn"
+                android:text="22"
+        />
+        <Button
+                android:id="@+id/workout_btn_23"
+                style="@style/workout_btn"
+                android:text="23"
+        />
+        <Button
+                android:id="@+id/workout_btn_24"
+                style="@style/workout_btn"
+                android:text="24"
+        />
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/workout_btn_layout_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/workout_btn_layout_4">
+        <Button
+                android:id="@+id/workout_btn_25"
+                style="@style/workout_btn"
+                android:text="25"
+        />
+        <Button
+                android:id="@+id/workout_btn_26"
+                style="@style/workout_btn"
+                android:text="26"
+        />
+        <Button
+                android:id="@+id/workout_btn_27"
+                style="@style/workout_btn"
+                android:text="27"
+        />
+        <Button
+                android:id="@+id/workout_btn_28"
+                style="@style/workout_btn"
+                android:text="28"
+        />
+        <Button
+                android:id="@+id/workout_btn_29"
+                style="@style/workout_btn"
+                android:text="29"
+        />
+        <Button
+                android:id="@+id/workout_btn_30"
+                style="@style/workout_btn"
+                android:text="30"
+        />
+    </LinearLayout>
 
+    <Button
+            android:id="@+id/start_workout_btn"
+            style="@style/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.09"
+            android:background="@drawable/begin_workout_button_shape"
+            android:text="начать"
+            android:textAllCaps="true"
+            app:layout_constraintTop_toBottomOf="@id/workout_btn_layout_5"
+            app:layout_constraintBottom_toBottomOf="parent"
+    />
 </android.support.constraint.ConstraintLayout>
