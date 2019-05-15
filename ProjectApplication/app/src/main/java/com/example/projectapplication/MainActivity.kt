@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.brkckr.circularprogressbar.CircularProgressBar
+import com.kevalpatel2106.rulerpicker.RulerValuePickerListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,67 +35,29 @@ class MainActivity : AppCompatActivity() {
             weight = userPreferences.getInt("weight", 0)
             bodyType = userPreferences.getString("bodyType", null)
         }
-        body_text.text = bodyType
-
-        body_picture.setImageResource(
-            when (bodyType) {
-                "Эктоморф 1" -> R.drawable.choose_body_picture1
-                "Эктоморф 2" -> R.drawable.choose_body_picture2
-                "Эктоморф 3" -> R.drawable.choose_body_picture3
-                "Эктоморф 4" -> R.drawable.choose_body_picture4
-                "Мезоморф 1" -> R.drawable.choose_body_picture5
-                "Мезоморф 2" -> R.drawable.choose_body_picture6
-                "Мезоморф 3" -> R.drawable.choose_body_picture7
-                "Мезоморф 4" -> R.drawable.choose_body_picture8
-                "Эндоморф 1" -> R.drawable.choose_body_picture9
-                "Эндоморф 2" -> R.drawable.choose_body_picture10
-                "Эндоморф 3" -> R.drawable.choose_body_picture11
-                "Эндоморф 4" -> R.drawable.choose_body_picture12
-                else -> 0
+        val bar = findViewById<CircularProgressBar>(R.id.progress_exercises_bar)
+        val akbar = findViewById<CircularProgressBar>(R.id.progress_days_bar)
+        fuckfuckfuck.selectValue(50)
+        fuckfuckfuckfuck.selectValue(70)
+        fuckfuckfuck.setValuePickerListener(object : RulerValuePickerListener{
+            override fun onIntermediateValueChange(selectedValue: Int) {
+                bar.progressValue =  fuckfuckfuck.currentValue.toFloat()
+                progress_exercises_bar_text.text = "${fuckfuckfuck.currentValue} %"
             }
-        )
 
-        workout_btn1.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                startActivity(
-                    Intent(this@MainActivity, TrainingActivity::class.java).putExtra(
-                        "some_variable",
-                        "Это тренировка рук"
-                    )
-                )
+            override fun onValueChange(selectedValue: Int) {
+
             }
 
         })
-        workout_btn2.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                startActivity(
-                    Intent(this@MainActivity, TrainingActivity::class.java).putExtra(
-                        "some_variable",
-                        "Это тренировка груди"
-                    )
-                )
+        fuckfuckfuckfuck.setValuePickerListener(object : RulerValuePickerListener{
+            override fun onValueChange(selectedValue: Int) {
+
             }
 
-        })
-        workout_btn3.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                startActivity(
-                    Intent(this@MainActivity, TrainingActivity::class.java).putExtra(
-                        "some_variable",
-                        "Это тренировка ног"
-                    )
-                )
-            }
-
-        })
-        workout_btn4.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                startActivity(
-                    Intent(this@MainActivity, TrainingActivity::class.java).putExtra(
-                        "some_variable",
-                        "Это тренировка еще какой нибудь хуйни"
-                    )
-                )
+            override fun onIntermediateValueChange(selectedValue: Int) {
+                akbar.progressValue =  fuckfuckfuckfuck.currentValue.toFloat()
+                progress_days_bar_text.text = "${fuckfuckfuckfuck.currentValue} %"
             }
 
         })

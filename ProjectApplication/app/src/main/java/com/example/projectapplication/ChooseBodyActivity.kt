@@ -99,7 +99,7 @@ class ChooseBodyActivity : AppCompatActivity() {
                 choose_body_view_pager.currentItem = 2
             }
         }
-        chosen_body_label.text = "Рекомендуемый тип: $bodyType"
+        chosen_body_label.text = "Лучше выбрать: $bodyType"
     }
 
 }

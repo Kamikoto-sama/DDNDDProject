@@ -27,6 +27,7 @@ class ChooseBodyPicturesFragmentOne : Fragment() {
         picture4.setOnClickListener { v ->
             bodyPictureClickHandle(R.drawable.choose_body_picture4,"Эктоморф 4", activity!!, picture4, v)
         }
+
         return v
     }
 }

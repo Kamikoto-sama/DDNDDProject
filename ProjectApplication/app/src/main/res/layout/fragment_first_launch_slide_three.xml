@@ -10,52 +10,73 @@
 
     <TextView
             android:id="@+id/enter_height_label"
+            style="@style/usual_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Выбери свой рост"
             android:textSize="30sp"
+            android:textColor="#000"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="60dp"
             android:gravity="center"/>
 
-    <NumberPicker
+    <com.kevalpatel2106.rulerpicker.RulerValuePicker
             android:id="@+id/enter_height"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:min_value="150"
+            app:max_value="210"
+            android:background="#0000"
+            app:indicator_color="#000"
+            app:ruler_text_color="#000"
+            app:indicator_interval="14dp"
+            app:indicator_width="2dp"
+            app:notch_color="#000"
+            app:ruler_text_size="6sp"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.4"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintHeight_percent="0.2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enter_height_label"
-            android:gravity="center"
-            android:inputType="number"
-    />
+            android:layout_marginTop="20dp"/>
 
     <TextView
             android:id="@+id/enter_weight_label"
+            style="@style/usual_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Выбери свой вес"
             android:textSize="30sp"
+            android:textColor="#000"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enter_height"
             android:layout_marginTop="60dp"
             android:gravity="center"/>
 
-    <NumberPicker
+    <com.kevalpatel2106.rulerpicker.RulerValuePicker
             android:id="@+id/enter_weight"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:background="#0000"
+            app:indicator_color="#000"
+            app:ruler_text_color="#000"
+            app:indicator_interval="14dp"
+            app:indicator_width="2dp"
+            app:notch_color="#000"
+            app:ruler_text_size="6sp"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.4"
-
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintHeight_percent="0.2"
+            app:min_value="50"
+            app:max_value="120"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enter_weight_label"
-            android:gravity="center"/>
+            android:layout_marginTop="20dp"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.projectapplication
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -7,6 +8,7 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import kotlinx.android.synthetic.main.activity_first_launch_slider.*
 import kotlinx.android.synthetic.main.fragment_first_launch_slide_three.*
@@ -18,11 +20,13 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     val pref_show_intro = "Intro"
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_launch_slider)
         activity = this
         makeAdapter()
+        val activeDotColor = ContextCompat.getColor(this,R.color.activeDotColor)
         preferences = getSharedPreferences("IntroSlider",Context.MODE_PRIVATE)
         if(!preferences.getBoolean(pref_show_intro,true)){
             startActivity(Intent(activity,ChooseBodyActivity::class.java))
@@ -43,6 +47,7 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
 
             }
 
+            @SuppressLint("ResourceAsColor")
             override fun onPageSelected(p0: Int) {
                 if(p0==0){
                     intro_btn_back.visibility = ViewPager.INVISIBLE
@@ -56,8 +61,8 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
                     intro_btn_next.text = "Готово"
                     intro_btn_next.setOnClickListener {
                         var introIntent = Intent(activity, ChooseBodyActivity::class.java)
-                        introIntent.putExtra("height",enter_height.value.toString().toInt())
-                        introIntent.putExtra("weight",enter_weight.value.toString().toInt())
+                        introIntent.putExtra("height",enter_height.currentValue.toString().toInt())
+                        introIntent.putExtra("weight",enter_weight.currentValue.toString().toInt())
                         startActivity(introIntent)
                         finish()
                         preferences
@@ -73,24 +78,25 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
                 }
                 when(intro_view_pager.currentItem){
                     0->{
-                        intro_indicator1.setTextColor(Color.BLACK)
-                        intro_indicator2.setTextColor(Color.GRAY)
-                        intro_indicator3.setTextColor(Color.GRAY)
+                        intro_indicator1.setTextColor(activeDotColor)
+                        intro_indicator2.setTextColor(Color.WHITE)
+                        intro_indicator3.setTextColor(Color.WHITE)
                     }
                     1->{
-                        intro_indicator1.setTextColor(Color.GRAY)
-                        intro_indicator2.setTextColor(Color.BLACK)
-                        intro_indicator3.setTextColor(Color.GRAY)
+                        intro_indicator1.setTextColor(Color.WHITE)
+                        intro_indicator2.setTextColor(activeDotColor)
+                        intro_indicator3.setTextColor(Color.WHITE)
                     }
                     2->{
-                        intro_indicator1.setTextColor(Color.GRAY)
-                        intro_indicator2.setTextColor(Color.GRAY)
-                        intro_indicator3.setTextColor(Color.BLACK)
+                        intro_indicator1.setTextColor(Color.WHITE)
+                        intro_indicator2.setTextColor(Color.WHITE)
+                        intro_indicator3.setTextColor(activeDotColor)
                     }
                 }
             }
 
         })
+
 
     }
 

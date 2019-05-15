@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ChooseBodyActivity"
-        android:background="@drawable/activity_background_gradient_1">
+        android:background="@drawable/first_launch_slider_background">
     <ImageView
             android:id="@+id/chosen_body_image"
             android:layout_width="0dp"
@@ -24,6 +24,7 @@
             android:src="@drawable/nick_fury"/>
     <TextView
             android:id="@+id/chosen_body_label"
+            style="@style/usual_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintWidth_default="percent"
@@ -33,7 +34,7 @@
             app:layout_constraintLeft_toRightOf="@id/chosen_body_image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/slider3_btn"
-            android:text="Рекомендуемый тип:"
+            android:text="Лучше выбрать:"
             android:textSize="25sp"
             android:gravity="center"/>
     <ImageView
@@ -93,6 +94,7 @@
 
     <Button
             android:id="@+id/go_to_main_btn"
+            style="@style/usual_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Погнали!"
