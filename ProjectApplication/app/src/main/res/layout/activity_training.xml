@@ -22,8 +22,22 @@
             app:layout_constraintHeight_default="percent"
             app:layout_constraintHeight_percent="0.09"
             android:background="@drawable/begin_workout_button_shape"
-            android:text="начать"
+            android:text="больше кнопок"
+            android:layout_margin="10px"
             android:textAllCaps="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
     />
+    <ScrollView
+            app:layout_constraintTop_toBottomOf="@id/begin_workout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:id="@+id/m_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/begin_workout_btn">
+
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
