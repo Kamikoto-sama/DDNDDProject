@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import kotlinx.android.synthetic.main.activity_training.*
 
 class TrainingActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class TrainingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_training)
         workout_activity_text.text = intent.getStringExtra("text")
         val mLayout: LinearLayout = findViewById(R.id.m_linear_layout)
+        val mScrollView : ScrollView = findViewById(R.id.m_scroll_view)
         var count = 0
         begin_workout_btn.setOnClickListener {
             count++
@@ -26,13 +28,16 @@ class TrainingActivity : AppCompatActivity() {
             newButton.text = if (count % 2 == 0) "Больше кнопок" else "богу кнопок"
             newButton.layoutParams = mLayoutParams
             newButton.id = count
-            newButton.width = 50
             newButton.textSize = 24f
             newButton.fontFeatureSettings = "Franklin"
             newButton.setTypeface(null, Typeface.BOLD_ITALIC)
             newButton.setBackgroundResource(R.drawable.begin_workout_button_shape)
+            mScrollView.scrollY += 100
             mLayout.addView(newButton)
-            newButton.setOnClickListener { v -> m_linear_layout.removeView(v) }
+            newButton.setOnClickListener { v ->
+                m_linear_layout.removeView(v)
+                mScrollView.scrollY -= 100
+            }
         }
     }
 }
