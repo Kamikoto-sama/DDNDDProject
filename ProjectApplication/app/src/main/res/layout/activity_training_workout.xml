@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+>
+    <android.support.constraint.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".WorkoutActivity">
+
+        <TextView
+                android:id="@+id/ex_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ex_image"
+                android:layout_margin="20dp"
+                android:text="1/5"
+        />
+        <ImageView
+                android:id="@+id/ex_image"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ex_num"
+                android:background="@drawable/activity_background_gradient_1"
+                android:tooltipText="Картинка"
+                android:layout_margin="20dp"
+        />
+        <LinearLayout
+                android:id="@+id/ex_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/ex_image"
+                android:orientation="vertical"
+                android:background="#FDE"
+                android:layout_margin="25dp">
+            <TextView
+                    android:id="@+id/ex_title"
+                    style="@style/title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Заголовок упражнения"
+                    android:layout_margin="20dp"
+            />
+            <TextView
+                    android:id="@+id/ex_subtitle_text"
+                    style="@style/usual_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Подзаголовок упражнения"
+                    android:layout_margin="20dp"
+            />
+            <TextView
+                    android:id="@+id/ex_main_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_text"
+                    android:layout_margin="20dp"
+            />
+
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_next_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/icon_done"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+
+    />
+</android.support.constraint.ConstraintLayout>

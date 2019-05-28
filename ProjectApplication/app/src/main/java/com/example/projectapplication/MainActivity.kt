@@ -5,10 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import com.brkckr.circularprogressbar.CircularProgressBar
-import com.kevalpatel2106.rulerpicker.RulerValuePickerListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -70,8 +67,11 @@ class MainActivity : AppCompatActivity() {
 
         for (i in 0..workoutBtnsArray.lastIndex){
         workoutBtnsArray[i].setOnClickListener {
-            startActivity(Intent(this,TrainingActivity::class.java).putExtra("text",workoutBtnsArray[i].text))
+            startActivity(Intent(this,TrainingInfoActivity::class.java).putExtra("text",workoutBtnsArray[i].text))
         }
+        }
+        start_workout_btn.setOnClickListener {
+            startActivity(Intent(this,WorkoutActivity::class.java))
         }
     }
 
