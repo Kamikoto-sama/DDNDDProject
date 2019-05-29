@@ -7,6 +7,75 @@
         android:layout_height="match_parent"
         tools:context=".WorkoutActivity">
 
+    <TextView
+            android:id="@+id/ex_relax_text"
+            style="@style/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Отдохни"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp"
+    />
+
+    <TextView
+            android:id="@+id/ex_timer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00'00&quot;"
+            app:layout_constraintLeft_toLeftOf="@id/ex_relax_text"
+            app:layout_constraintRight_toRightOf="@id/ex_relax_text"
+            app:layout_constraintTop_toBottomOf="@id/ex_relax_text"
+            android:layout_margin="10dp"
+    />
+
+    <ImageView
+            android:id="@+id/ex_next_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintHeight_percent="0.3"
+            android:src="@drawable/activity_background_gradient_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ex_timer_text"
+            android:layout_marginTop="30dp"/>
+
+    <TextView
+            android:id="@+id/ex_next_exercises_text"
+            style="@style/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Следующее"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ex_next_image"
+            android:layout_marginTop="20dp"
+
+    />
+
+    <LinearLayout
+            android:id="@+id/ex_progress_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ex_next_exercises_text"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+    </LinearLayout>
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_next_layout"
             android:layout_width="wrap_content"
@@ -16,4 +85,5 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"/>
+
 </android.support.constraint.ConstraintLayout>

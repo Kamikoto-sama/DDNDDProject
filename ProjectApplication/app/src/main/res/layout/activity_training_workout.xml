@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/ex_image"
                 android:orientation="vertical"
-                android:background="#FDE"
+                android:background="@android:drawable/dialog_holo_light_frame"
                 android:layout_margin="25dp">
             <TextView
                     android:id="@+id/ex_title"
