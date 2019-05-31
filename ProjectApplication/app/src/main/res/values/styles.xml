@@ -25,6 +25,14 @@
         <item name="android:fontFamily">"Franklin"</item>
         <item name="android:textColor">#000</item>
     </style>
+    <style name="usual_intro_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:fontFamily">"Franklin"</item>
+        <item name="android:textColor">#fff</item>
+    </style>
     <style name="workout_btn">
         <item name="android:layout_width">35dp</item>
         <item name="android:layout_height">35dp</item>

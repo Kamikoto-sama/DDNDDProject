@@ -10,11 +10,10 @@
 
     <TextView
             android:id="@+id/enter_height_label"
-            style="@style/usual_text"
+            style="@style/usual_intro_text"
             android:layout_width="match_parent"
             android:text="Выбери свой рост"
             android:textSize="30sp"
-            android:textColor="#000"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,12 +26,12 @@
             android:layout_height="0dp"
             app:min_value="150"
             app:max_value="210"
-            android:background="#0000"
-            app:indicator_color="#000"
-            app:ruler_text_color="#000"
+            android:background="@null"
+            app:indicator_color="#fff"
+            app:ruler_text_color="#fff"
             app:indicator_interval="14dp"
             app:indicator_width="2dp"
-            app:notch_color="#000"
+            app:notch_color="#fff"
             app:ruler_text_size="6sp"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintHeight_default="percent"
@@ -44,15 +43,26 @@
             android:layout_marginTop="20dp"/>
 
     <TextView
-            android:id="@+id/enter_weight_label"
-            style="@style/usual_text"
-            android:layout_width="match_parent"
-            android:text="Выбери свой вес"
-            android:textSize="30sp"
-            android:textColor="#000"
+            android:id="@+id/picked_height_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/usual_intro_text"
+            android:textSize="24sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enter_height"
+
+    />
+
+    <TextView
+            android:id="@+id/enter_weight_label"
+            style="@style/usual_intro_text"
+            android:layout_width="match_parent"
+            android:text="Выбери свой вес"
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/picked_height_text"
             android:layout_marginTop="60dp"
             android:gravity="center"/>
 
@@ -61,11 +71,11 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#0000"
-            app:indicator_color="#000"
-            app:ruler_text_color="#000"
+            app:indicator_color="#fff"
+            app:ruler_text_color="#fff"
             app:indicator_interval="14dp"
             app:indicator_width="2dp"
-            app:notch_color="#000"
+            app:notch_color="#fff"
             app:ruler_text_size="6sp"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintHeight_default="percent"
@@ -77,6 +87,18 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enter_weight_label"
             android:layout_marginTop="20dp"/>
+
+    <TextView
+            android:id="@+id/picked_weight_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/usual_intro_text"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enter_weight"
+
+    />
 
 
 </android.support.constraint.ConstraintLayout>
