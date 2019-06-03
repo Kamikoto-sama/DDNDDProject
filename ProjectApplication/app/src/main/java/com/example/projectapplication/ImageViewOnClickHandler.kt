@@ -13,7 +13,7 @@ class ImageViewOnClickHandler{
             mActivity!!.intent.putExtra("bodyType", bodyType)
             mActivity!!.intent.putExtra("isBodyChosen", true)
             AnimationAdapter.pictureClickAnimation(picture, v!!.context)
-            mActivity!!.findViewById<TextView>(R.id.chosen_body_label).text = "Выбранный тип: $bodyType"
+            mActivity!!.findViewById<TextView>(R.id.nick_fury_text).text = "Выбранный тип: $bodyType"
         }
     }
 

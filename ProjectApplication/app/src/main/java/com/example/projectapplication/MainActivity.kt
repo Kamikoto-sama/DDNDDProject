@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var userPreferences: SharedPreferences
+    lateinit var workoutBtnsArray : Array<Button>
     var height: Int = 0
     var weight: Int = 0
     lateinit var bodyType: String
@@ -18,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         userPreferences = getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
+        getUserParameters()
+        setButtonsListeners()
+    }
+
+    private fun getUserParameters() {
         if (userPreferences.getBoolean("IS_FIRST_LAUNCH", true)) {
             height = intent.extras.getInt("height")
             weight = intent.extras.getInt("weight")
@@ -33,7 +39,10 @@ class MainActivity : AppCompatActivity() {
             weight = userPreferences.getInt("weight", 0)
             bodyType = userPreferences.getString("bodyType", null)
         }
-        val workoutBtnsArray : Array<Button> = arrayOf(
+    }
+
+    private fun setButtonsListeners() {
+        workoutBtnsArray  = arrayOf(
             findViewById(R.id.workout_btn_1),
             findViewById(R.id.workout_btn_2),
             findViewById(R.id.workout_btn_3),
@@ -64,17 +73,15 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.workout_btn_28),
             findViewById(R.id.workout_btn_29),
             findViewById(R.id.workout_btn_30))
-
         for (i in 0..workoutBtnsArray.lastIndex){
-        workoutBtnsArray[i].setOnClickListener {
-            startActivity(Intent(this,TrainingInfoActivity::class.java).putExtra("text",workoutBtnsArray[i].text))
-        }
+            workoutBtnsArray[i].setOnClickListener {
+                startActivity(Intent(this,TrainingInfoActivity::class.java).putExtra("text",workoutBtnsArray[i].text))
+            }
         }
         start_workout_btn.setOnClickListener {
             startActivity(Intent(this,WorkoutActivity::class.java))
         }
     }
-
 
 
 }

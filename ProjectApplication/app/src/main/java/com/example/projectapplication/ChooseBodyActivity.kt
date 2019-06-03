@@ -21,16 +21,49 @@ import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_two
 class ChooseBodyActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     lateinit var intentToSend: Intent
+    lateinit var weight: String //
+    lateinit var height: String //
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_body)
         intentToSend = Intent(this, MainActivity::class.java)
         preferences = getSharedPreferences("pref", Context.MODE_PRIVATE)
+
+        doNotLaunchIfNeeded(preferences)
+        initializeBodySliderAdapter()
+        setListenerForGoToMainButton()
+        setListenersForSlideButtons()
+        defineBodyType()
+
+
+    }
+
+    private fun defineBodyType() {
+        if (intent.extras != null) {
+            weight = intent.extras.getInt("weight").toString()
+            height = intent.extras.getInt("height").toString()
+            countBodyTypeByFormula(height.toDouble(), weight.toInt())
+            preferences
+                .edit()
+                .putString("weight", weight)
+                .putString("height", height)
+                .apply()
+        } else {
+            weight = preferences.getString("weight", "0").toString()
+            height = preferences.getString("height", "0").toString()
+            countBodyTypeByFormula(height.toDouble(), weight.toInt())
+        }
+    }
+
+    private fun doNotLaunchIfNeeded(preferences: SharedPreferences) {
         if (!preferences.getBoolean("isNeedToLaunch", true)) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+    }
+
+    private fun setListenerForGoToMainButton() {
         go_to_main_btn.setOnClickListener {
             if (intent.getStringExtra("bodyType") != null) {
                 intentToSend.putExtra("bodyType", intent.getStringExtra("bodyType"))
@@ -44,44 +77,33 @@ class ChooseBodyActivity : AppCompatActivity() {
                 Toast.makeText(this, "Выбери себе тело чтобы продолжить", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun initializeBodySliderAdapter(): ChooseBodySliderAdapter {
         var adapter = ChooseBodySliderAdapter(supportFragmentManager)
         adapter.addFragment(ChooseBodyPicturesFragmentOne())
         adapter.addFragment(ChooseBodyPicturesFragmentTwo())
         adapter.addFragment(ChooseBodyPicturesFragmentThree())
         choose_body_view_pager.adapter = adapter
-        lateinit var weight: String //
-        lateinit var height: String //
-        if (intent.extras != null) {
-            weight = intent.extras.getInt("weight").toString()
-            height = intent.extras.getInt("height").toString()
-            defineBodyType(height.toDouble(), weight.toInt())
-            preferences
-                .edit()
-                .putString("weight", weight)
-                .putString("height", height)
-                .apply()
-        } else {
-            weight = preferences.getString("weight", "0").toString()
-            height = preferences.getString("height", "0").toString()
-            defineBodyType(height.toDouble(), weight.toInt())
-        }
-        slider1_btn.setOnClickListener {
-            choose_body_view_pager.currentItem = 0
-            pictureClickAnimation(slider1_btn, this)
-        }
-        slider2_btn.setOnClickListener {
-            choose_body_view_pager.currentItem = 1
-            pictureClickAnimation(slider2_btn, this)
-        }
-        slider3_btn.setOnClickListener {
-            choose_body_view_pager.currentItem = 2
-            pictureClickAnimation(slider3_btn, this)
-        }
-
+        return adapter
     }
 
+    private fun setListenersForSlideButtons() {
+        slider1_btn.setOnClickListener {
+            pictureClickAnimation(slider1_btn, this)
+            choose_body_view_pager.currentItem = 0
+        }
+        slider2_btn.setOnClickListener {
+            pictureClickAnimation(slider2_btn, this)
+            choose_body_view_pager.currentItem = 1
+        }
+        slider3_btn.setOnClickListener {
+            pictureClickAnimation(slider3_btn, this)
+            choose_body_view_pager.currentItem = 2
+        }
+    }
 
-    private fun defineBodyType(height: Double, weight: Int) {
+    private fun countBodyTypeByFormula(height: Double, weight: Int) {
         val metersHeight: Double = height / 100
         val formulaResult: Double = (weight / metersHeight / metersHeight)
         lateinit var bodyType: String
@@ -99,7 +121,7 @@ class ChooseBodyActivity : AppCompatActivity() {
                 choose_body_view_pager.currentItem = 2
             }
         }
-        chosen_body_label.text = "Лучше выбрать: $bodyType"
+        nick_fury_text.text = "Лучше выбрать: $bodyType"
     }
 
 }
