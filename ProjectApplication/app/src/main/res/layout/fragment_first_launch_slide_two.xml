@@ -9,7 +9,8 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="В ближайшее время у тебя будет возможность получить тело супергероя"
+            style="@style/usual_intro_text"
+            android:text="здесь должна быть еще картинка"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:textSize="30sp"/>

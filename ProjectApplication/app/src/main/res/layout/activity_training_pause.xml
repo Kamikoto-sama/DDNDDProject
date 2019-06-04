@@ -18,7 +18,7 @@
             android:layout_marginTop="30dp"
     />
 
-    <TextView
+    <Chronometer
             android:id="@+id/ex_timer_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,6 +27,8 @@
             app:layout_constraintRight_toRightOf="@id/ex_relax_text"
             app:layout_constraintTop_toBottomOf="@id/ex_relax_text"
             android:layout_margin="10dp"
+            android:textSize="17sp"
+            android:textColor="#0f0"
     />
 
     <ImageView
@@ -37,7 +39,6 @@
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintHeight_percent="0.3"
-            android:src="@drawable/activity_background_gradient_1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ex_timer_text"

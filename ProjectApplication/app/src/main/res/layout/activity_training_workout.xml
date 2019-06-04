@@ -35,7 +35,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ex_num"
-                android:background="@drawable/activity_background_gradient_1"
                 android:tooltipText="Картинка"
                 android:layout_margin="20dp"
         />

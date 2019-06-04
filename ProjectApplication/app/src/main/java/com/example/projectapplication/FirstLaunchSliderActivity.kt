@@ -20,18 +20,25 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     val pref_show_intro = "Intro"
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_launch_slider)
         activity = this
         makeAdapter()
-        val activeDotColor = ContextCompat.getColor(this,R.color.activeDotColor)
+
         preferences = getSharedPreferences("IntroSlider",Context.MODE_PRIVATE)
         if(!preferences.getBoolean(pref_show_intro,true)){
             startActivity(Intent(activity,ChooseBodyActivity::class.java))
             finish()
         }
+    }
+
+    fun makeAdapter(){
+        val activeDotColor = ContextCompat.getColor(this,R.color.activeDotColor)
+        adapter = FirstLaunchSliderAdapter(supportFragmentManager)
+        adapter.addFragment(FirstLaunchSlideOne())
+        adapter.addFragment(FirstLaunchSlideTwo())
+        adapter.addFragment(FirstLaunchSlideThree())
         intro_view_pager.adapter = adapter
 
         intro_btn_next.setOnClickListener {
@@ -96,15 +103,6 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
             }
 
         })
-
-
-    }
-
-    fun makeAdapter(){
-        adapter = FirstLaunchSliderAdapter(supportFragmentManager)
-        adapter.addFragment(FirstLaunchSlideOne())
-        adapter.addFragment(FirstLaunchSlideTwo())
-        adapter.addFragment(FirstLaunchSlideThree())
     }
 
 
