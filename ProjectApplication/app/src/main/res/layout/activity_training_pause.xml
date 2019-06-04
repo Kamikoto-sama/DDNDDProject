@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Отдохни"
+            android:text="Отдохните"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="30dp"
     />
@@ -22,13 +22,12 @@
             android:id="@+id/ex_timer_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00'00&quot;"
             app:layout_constraintLeft_toLeftOf="@id/ex_relax_text"
             app:layout_constraintRight_toRightOf="@id/ex_relax_text"
             app:layout_constraintTop_toBottomOf="@id/ex_relax_text"
             android:layout_margin="10dp"
             android:textSize="17sp"
-            android:textColor="#0f0"
+            android:textColor="#2b9ad0"
     />
 
     <ImageView
@@ -51,10 +50,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Следующее"
+            android:layout_marginTop="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ex_next_image"
-            android:layout_marginTop="20dp"
 
     />
 
@@ -65,15 +64,13 @@
             app:layout_constraintWidth_default="percent"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.8"
-            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintHeight_percent="0.3"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ex_next_exercises_text"
-            android:background="@android:drawable/dialog_holo_light_frame"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
-            android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center|top"
             android:orientation="vertical">
 
     </LinearLayout>
@@ -81,7 +78,10 @@
             android:id="@+id/btn_next_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_next"
+            android:src="@drawable/fab_next_arrow"
+            android:backgroundTint="#2b9ad0"
+            app:maxImageSize="32dp"
+            app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginRight="15dp"

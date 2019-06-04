@@ -33,6 +33,7 @@ class ChooseBodyActivity : AppCompatActivity() {
         doNotLaunchIfNeeded(preferences)
         initializeBodySliderAdapter()
         setListenerForGoToMainButton()
+        setListenerForOpenInfoButton()
         setListenersForSlideButtons()
         defineBodyType()
 
@@ -63,8 +64,16 @@ class ChooseBodyActivity : AppCompatActivity() {
         }
     }
 
+    private fun setListenerForOpenInfoButton() {
+        chosen_body_image.setOnClickListener {
+            if (intent.getStringExtra("bodyType") != null) {
+                startActivity(Intent(this, BodyInfoActivity::class.java))
+            }
+        }
+    }
+
     private fun setListenerForGoToMainButton() {
-        go_to_main_btn.setOnClickListener {
+        nick_fury_text.setOnClickListener {
             if (intent.getStringExtra("bodyType") != null) {
                 intentToSend.putExtra("bodyType", intent.getStringExtra("bodyType"))
 
@@ -73,9 +82,9 @@ class ChooseBodyActivity : AppCompatActivity() {
                 preferences.edit().putBoolean("isNeedToLaunch", false).apply()
                 startActivity(intentToSend)
                 finish()
-            } else {
+            } /*else {
                 Toast.makeText(this, "Выбери себе тело чтобы продолжить", Toast.LENGTH_SHORT).show()
-            }
+            }*/
         }
     }
 
