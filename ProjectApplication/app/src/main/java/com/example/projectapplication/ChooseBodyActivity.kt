@@ -3,40 +3,38 @@ package com.example.projectapplication
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
 import com.example.projectapplication.AnimationAdapter.Companion.pictureClickAnimation
 import kotlinx.android.synthetic.main.activity_choose_body.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_one.*
-import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_one.view.*
-import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_three.*
-import kotlinx.android.synthetic.main.fragment_choose_body_pictures_fragment_two.*
 
 class ChooseBodyActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     lateinit var intentToSend: Intent
-    lateinit var weight: String //
-    lateinit var height: String //
-
+    var isNeedToLaunch = true
+    var isBodyChosen = false
+    lateinit var bodyType: String
+    lateinit var weight: String
+    lateinit var height: String
+    var isFirstLaunch = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_body)
         intentToSend = Intent(this, MainActivity::class.java)
         preferences = getSharedPreferences("pref", Context.MODE_PRIVATE)
-
+        isNeedToLaunch = intent.getBooleanExtra("isNeedToLaunch", false)
+        isFirstLaunch = intent.getBooleanExtra("isFirstLaunch", true)
+        if (intent.getStringExtra("bodyType") != null)
+            bodyType = intent.getStringExtra("bodyType")
+        if (isFirstLaunch)
+            isBodyChosen = true
+        preferences.edit().putBoolean("isNeedToLaunch", isNeedToLaunch).apply()
         doNotLaunchIfNeeded(preferences)
         initializeBodySliderAdapter()
         setListenerForGoToMainButton()
         setListenerForOpenInfoButton()
         setListenersForSlideButtons()
         defineBodyType()
-
 
     }
 
@@ -67,18 +65,15 @@ class ChooseBodyActivity : AppCompatActivity() {
     private fun setListenerForOpenInfoButton() {
         chosen_body_image.setOnClickListener {
             if (intent.getStringExtra("bodyType") != null) {
-                startActivity(Intent(this, BodyInfoActivity::class.java))
+                startActivityForResult(Intent(this, BodyInfoActivity::class.java), 1)
             }
         }
     }
 
     private fun setListenerForGoToMainButton() {
         nick_fury_text.setOnClickListener {
-            if (intent.getStringExtra("bodyType") != null) {
-                intentToSend.putExtra("bodyType", intent.getStringExtra("bodyType"))
-
-                intentToSend.putExtra("weight", intent.extras.getInt("weight"))
-                intentToSend.putExtra("height", intent.extras.getInt("height"))
+            if (isBodyChosen) {
+                intentToSend.putExtra("bodyType", bodyType)
                 preferences.edit().putBoolean("isNeedToLaunch", false).apply()
                 startActivity(intentToSend)
                 finish()
@@ -115,22 +110,34 @@ class ChooseBodyActivity : AppCompatActivity() {
     private fun countBodyTypeByFormula(height: Double, weight: Int) {
         val metersHeight: Double = height / 100
         val formulaResult: Double = (weight / metersHeight / metersHeight)
-        lateinit var bodyType: String
+        var lBodyType = "undefined"
         when {
             formulaResult < 18.5 -> {
-                bodyType = "Эктоморф"
+                lBodyType = "Эктоморф"
                 choose_body_view_pager.currentItem = 0
             }
             formulaResult in 18.5..24.9 -> {
-                bodyType = "Мезоморф"
+                lBodyType = "Мезоморф"
                 choose_body_view_pager.currentItem = 1
             }
             formulaResult > 25 -> {
-                bodyType = "Эндоморф"
+                lBodyType = "Эндоморф"
                 choose_body_view_pager.currentItem = 2
             }
         }
-        nick_fury_text.text = "Лучше выбрать: $bodyType"
+        if (isFirstLaunch)
+            nick_fury_text.text = "Лучше выбрать: $lBodyType"
+        else nick_fury_text.text = "выбери себе тело"
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (data == null) return
+        var mDrawable = 0
+        bodyType = data.getStringExtra("bodyType")
+        mDrawable = data.getIntExtra("id", 0)
+        isBodyChosen = data.getBooleanExtra("isBodyChosen", isBodyChosen)
+        nick_fury_text.text = "начать"
+        nick_fury_text.textSize = 50f
+        chosen_body_image.setImageResource(mDrawable)
+    }
 }

@@ -1,87 +1,59 @@
 package com.example.projectapplication
 
-import android.content.Context
+import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.support.v7.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var userPreferences: SharedPreferences
-    lateinit var workoutBtnsArray : Array<Button>
-    var height: Int = 0
-    var weight: Int = 0
-    lateinit var bodyType: String
-
+    lateinit var activity: Activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        userPreferences = getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
-        getUserParameters()
-        setButtonsListeners()
-    }
+        activity = this
 
-    private fun getUserParameters() {
-        if (userPreferences.getBoolean("IS_FIRST_LAUNCH", true)) {
-            height = intent.extras.getInt("height")
-            weight = intent.extras.getInt("weight")
-            bodyType = intent.extras.getString("bodyType")
-            userPreferences.edit()
-                .putInt("height", height)
-                .putInt("weight", weight)
-                .putString("bodyType", bodyType)
-                .putBoolean("IS_FIRST_LAUNCH", false)
-                .apply()
-        } else {
-            height = userPreferences.getInt("height", 0)
-            weight = userPreferences.getInt("weight", 0)
-            bodyType = userPreferences.getString("bodyType", null)
+        main_act_body_btn.setOnClickListener {
+            startActivity(
+                Intent(this, TrainingProgramActivity::class.java).putExtra(
+                    "bodyType",
+                    intent.getStringExtra("bodyType")
+                )
+            )
+        }
+        main_act_diet_btn.setOnClickListener {
+            startActivity(Intent(this, DietActivity::class.java))
+        }
+
+        main_act_change_program_btn.setOnClickListener {
+            makeChangeAlertDialog()
         }
     }
 
-    private fun setButtonsListeners() {
-        workoutBtnsArray  = arrayOf(
-            findViewById(R.id.workout_btn_1),
-            findViewById(R.id.workout_btn_2),
-            findViewById(R.id.workout_btn_3),
-            findViewById(R.id.workout_btn_4),
-            findViewById(R.id.workout_btn_5),
-            findViewById(R.id.workout_btn_6),
-            findViewById(R.id.workout_btn_7),
-            findViewById(R.id.workout_btn_8),
-            findViewById(R.id.workout_btn_9),
-            findViewById(R.id.workout_btn_10),
-            findViewById(R.id.workout_btn_11),
-            findViewById(R.id.workout_btn_12),
-            findViewById(R.id.workout_btn_13),
-            findViewById(R.id.workout_btn_14),
-            findViewById(R.id.workout_btn_15),
-            findViewById(R.id.workout_btn_16),
-            findViewById(R.id.workout_btn_17),
-            findViewById(R.id.workout_btn_18),
-            findViewById(R.id.workout_btn_19),
-            findViewById(R.id.workout_btn_20),
-            findViewById(R.id.workout_btn_21),
-            findViewById(R.id.workout_btn_22),
-            findViewById(R.id.workout_btn_23),
-            findViewById(R.id.workout_btn_24),
-            findViewById(R.id.workout_btn_25),
-            findViewById(R.id.workout_btn_26),
-            findViewById(R.id.workout_btn_27),
-            findViewById(R.id.workout_btn_28),
-            findViewById(R.id.workout_btn_29),
-            findViewById(R.id.workout_btn_30))
-        for (i in 0..workoutBtnsArray.lastIndex){
-            workoutBtnsArray[i].setOnClickListener {
-                startActivity(Intent(this,TrainingInfoActivity::class.java).putExtra("text",workoutBtnsArray[i].text))
+    private fun makeChangeAlertDialog() {
+        val changeBodyDialog = AlertDialog.Builder(this)
+        changeBodyDialog.setTitle("Внимание!")
+        changeBodyDialog.setMessage("Создастся новая программа тренировок, вы потеряете свой сохраненный прогресс. Продолжить?")
+        changeBodyDialog.setPositiveButton("продолжить", object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                startActivity(
+                    Intent(activity, ChooseBodyActivity::class.java)
+                        .putExtra("isNeedToLaunch", true)
+                        .putExtra("isFirstLaunch", false)
+                        .putExtra("bodyType", intent.getStringExtra("bodyType"))
+                )
+                finish()
             }
-        }
-        start_workout_btn.setOnClickListener {
-            startActivity(Intent(this,WorkoutActivity::class.java))
-        }
+
+        })
+        changeBodyDialog.setNegativeButton("отмена", object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+
+            }
+
+        })
+        changeBodyDialog.create().show()
     }
-
-
 }

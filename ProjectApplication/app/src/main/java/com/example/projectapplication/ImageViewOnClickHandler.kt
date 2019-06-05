@@ -1,19 +1,18 @@
 package com.example.projectapplication
 
 import android.app.Activity
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 
 class ImageViewOnClickHandler{
     companion object {
         fun bodyPictureClickHandle(drawable : Int, bodyType : String, mActivity : Activity, picture : ImageView, v: View){
-            mActivity!!.findViewById<ImageView>(R.id.chosen_body_image)
-                .setImageResource(drawable)
-            mActivity!!.intent.putExtra("bodyType", bodyType)
-            mActivity!!.intent.putExtra("isBodyChosen", true)
             AnimationAdapter.pictureClickAnimation(picture, v!!.context)
-            mActivity!!.findViewById<TextView>(R.id.nick_fury_text).text = "Выбранный тип: $bodyType"
+            mActivity!!.startActivityForResult(Intent(mActivity,BodyInfoActivity::class.java).putExtra("bodyType", bodyType).putExtra("id",drawable),1)
         }
     }
 

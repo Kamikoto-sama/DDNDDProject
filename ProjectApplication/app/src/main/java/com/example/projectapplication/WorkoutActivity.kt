@@ -25,6 +25,7 @@ lateinit var mChronometer : Chronometer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         makeExerciseLayout()
+        var myString = getString(R.string.main_text)
     }
 
     private fun makeExerciseLayout() {
