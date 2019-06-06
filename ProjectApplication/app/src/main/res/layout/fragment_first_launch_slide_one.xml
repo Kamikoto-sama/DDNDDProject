@@ -21,5 +21,34 @@
             android:src="@drawable/nick_fury"
             android:background="@null"/>
 
+    <TextView
+            android:id="@+id/nick_fury_phrase"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintWidth_percent="0.78"
+            app:layout_constraintHeight_percent="0.12"
+            android:text="здорова герой"
+            style="@style/usual_text"
+            app:layout_constraintLeft_toLeftOf="@id/nick_fury"
+            app:layout_constraintRight_toRightOf="@id/nick_fury"
+            app:layout_constraintTop_toTopOf="@id/nick_fury"
+            app:layout_constraintBottom_toBottomOf="@id/nick_fury"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/nick_fury_phrase_background"
+            android:gravity="center"
+            android:textSize="25dp"
+
+    />
+    <Button
+            android:id="@+id/nick_fury_phrase_btn"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:background="@drawable/nick_fury_phrase_btn"
+            app:layout_constraintRight_toRightOf="@id/nick_fury_phrase"
+            app:layout_constraintTop_toBottomOf="@id/nick_fury_phrase"
+    />
+
 
 </android.support.constraint.ConstraintLayout>

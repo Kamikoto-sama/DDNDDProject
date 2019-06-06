@@ -63,7 +63,8 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
                         var introIntent = Intent(activity, ChooseBodyActivity::class.java)
                         introIntent.putExtra("height", enter_height.currentValue.toString().toInt())
                         introIntent.putExtra("weight", enter_weight.currentValue.toString().toInt())
-                        startActivity(introIntent)
+                        introIntent.putExtra("isPicked", true)
+                        setResult(Activity.RESULT_OK, introIntent)
                         finish()
                     }
                 } else {
@@ -92,6 +93,10 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onBackPressed() {
+
     }
 
 

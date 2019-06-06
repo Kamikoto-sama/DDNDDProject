@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     lateinit var activity: Activity
     lateinit var preferences: SharedPreferences
+    lateinit var bodyType : String
     val FIRST_LAUNCH = "firstLaunch"
     val CHOOSE_BODY_LAUNCH = "chooseBodyLaunch"
 
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         startFirstLaunchSliderActivity()
 
 
-        main_act_body_btn.setOnClickListener {
+        main_act_body_layout.setOnClickListener {
             startActivity(
                 Intent(this, TrainingProgramActivity::class.java).putExtra(
                     "bodyType",
@@ -32,20 +33,19 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-        main_act_diet_btn.setOnClickListener {
+        main_act_diet_layout.setOnClickListener {
             startActivity(Intent(this, DietActivity::class.java))
         }
 
-        main_act_change_program_btn.setOnClickListener {
+        main_act_change_program_layout.setOnClickListener {
             makeChangeAlertDialog()
         }
     }
 
     private fun startFirstLaunchSliderActivity() {
         if (preferences.getBoolean(FIRST_LAUNCH, true)) {
-            startActivity(Intent(activity, FirstLaunchSliderActivity::class.java))
-            preferences.edit().putBoolean(FIRST_LAUNCH, false).apply()
-            finish()
+            startActivityForResult(Intent(activity, ChooseBodyActivity::class.java).putExtra("needFirstLaunch", true), 1)
+
         }
     }
 
@@ -55,22 +55,27 @@ class MainActivity : AppCompatActivity() {
         changeBodyDialog.setMessage("Создастся новая программа тренировок, вы потеряете свой сохраненный прогресс. Продолжить?")
         changeBodyDialog.setPositiveButton("продолжить", object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
-                startActivity(
+                startActivityForResult(
                     Intent(activity, ChooseBodyActivity::class.java)
                         .putExtra("isNeedToLaunch", true)
                         .putExtra("isFirstLaunch", false)
                         .putExtra("bodyType", intent.getStringExtra("bodyType"))
-                )
-                finish()
+                , 1)
             }
 
         })
         changeBodyDialog.setNegativeButton("отмена", object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
-
             }
 
         })
         changeBodyDialog.create().show()
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(data==null) return
+        bodyType = data.getStringExtra("bodyType")
+        preferences.edit().putBoolean(FIRST_LAUNCH, false).apply()
     }
 }

@@ -1,5 +1,6 @@
 package com.example.projectapplication
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,10 +16,13 @@ class ChooseBodyActivity : AppCompatActivity() {
     lateinit var bodyType: String
     lateinit var weight: String
     lateinit var height: String
+    var isHeightAndWeightPicked = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_body)
         intentToSend = Intent(this, MainActivity::class.java)
+        if(intent.getBooleanExtra("needFirstLaunch", false) && !isHeightAndWeightPicked)
+            startActivityForResult(Intent(this,FirstLaunchSliderActivity::class.java),2)
         preferences = getSharedPreferences("pref", Context.MODE_PRIVATE)
         if (intent.getStringExtra("bodyType") != null)
             bodyType = intent.getStringExtra("bodyType")
@@ -31,20 +35,10 @@ class ChooseBodyActivity : AppCompatActivity() {
     }
 
     private fun defineBodyType() {
-        if (intent.extras != null) {
-            weight = intent.extras.getInt("weight").toString()
-            height = intent.extras.getInt("height").toString()
-            countBodyTypeByFormula(height.toDouble(), weight.toInt())
-            preferences
-                .edit()
-                .putString("weight", weight)
-                .putString("height", height)
-                .apply()
-        } else {
+
             weight = preferences.getString("weight", "0").toString()
             height = preferences.getString("height", "0").toString()
             countBodyTypeByFormula(height.toDouble(), weight.toInt())
-        }
     }
 
     private fun setListenerForOpenInfoButton() {
@@ -59,7 +53,7 @@ class ChooseBodyActivity : AppCompatActivity() {
         nick_fury_text.setOnClickListener {
             if (isBodyChosen) {
                 intentToSend.putExtra("bodyType", bodyType)
-                startActivity(intentToSend)
+                setResult(Activity.RESULT_OK, intentToSend)
                 finish()
             }
         }
@@ -92,7 +86,7 @@ class ChooseBodyActivity : AppCompatActivity() {
     private fun countBodyTypeByFormula(height: Double, weight: Int) {
         val metersHeight: Double = height / 100
         val formulaResult: Double = (weight / metersHeight / metersHeight)
-        var lBodyType = "undefined"
+        var lBodyType = ""
         when {
             formulaResult < 18.5 -> {
                 lBodyType = "Эктоморф"
@@ -107,17 +101,29 @@ class ChooseBodyActivity : AppCompatActivity() {
                 choose_body_view_pager.currentItem = 2
             }
         }
-            nick_fury_text.text = "Лучше выбрать: $lBodyType"
+            nick_fury_text.text = "Подходящий тип : $lBodyType"
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (data == null) return
-        var mDrawable = 0
-        bodyType = data.getStringExtra("bodyType")
-        mDrawable = data.getIntExtra("id", 0)
-        isBodyChosen = data.getBooleanExtra("isBodyChosen", isBodyChosen)
-        nick_fury_text.text = "начать"
-        nick_fury_text.textSize = 50f
-        chosen_body_image.setImageResource(mDrawable)
+        if(requestCode==1){
+            var mDrawable : Int = data.getIntExtra("id", 0)
+            bodyType = data.getStringExtra("bodyType")
+            isBodyChosen = data.getBooleanExtra("isBodyChosen", isBodyChosen)
+            nick_fury_text.text = "начать"
+            nick_fury_text.textSize = 50f
+            chosen_body_image.setImageResource(mDrawable)
+        }
+        if(requestCode==2 && resultCode== Activity.RESULT_OK){
+            height = data.getIntExtra("height", 0).toString()
+            weight = data.getIntExtra("weight", 0).toString()
+            isHeightAndWeightPicked = data.getBooleanExtra("isPicked", false)
+            preferences
+                .edit()
+                .putString("weight", weight)
+                .putString("height", height)
+                .apply()
+
+        }
     }
 }

@@ -15,8 +15,7 @@
             app:layout_constraintHeight_percent="0.3"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="10dp"
-            android:background="@drawable/main_act_body_layout_background"
-    >
+            android:background="@drawable/main_act_body_layout_background">
 
         <ImageView
                 android:id="@+id/main_act_body_image"
