@@ -12,15 +12,18 @@ import kotlinx.android.synthetic.main.activity_training_info.*
 
 class TrainingInfoActivity : AppCompatActivity() {
 
-    var exercisesArray = arrayOf("Приседания", "Отжимания", "Подтягивания", "Жим 100кг", "Хз чето еще")
-    var exercisesCountArray = arrayOf(50,23,423,13,53)
-    var exercisesCount = 5
+    var currentDay = 0;
+    lateinit var exercisesArray : ArrayList<Exercise>
+    lateinit var mDataBase: DataBase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training_info)
+        mDataBase = DataBase(this)
+        currentDay = intent.getIntExtra("day", 0)
+        exercisesArray = mDataBase.getTraining(currentDay)
         val titleText = findViewById<TextView>(R.id.workout_info_title_text)
         titleText.text = "День ${intent.getStringExtra("text")}"
-        for(i in 0 until exercisesCount){
+        for(i in 0 until exercisesArray.count()){
             addItemToLayout(i)
         }
         info_begin_workout_btn.setOnClickListener {
@@ -45,8 +48,8 @@ class TrainingInfoActivity : AppCompatActivity() {
         exNameText.layoutParams = exNameTextParams
         exRepeatsCount.layoutParams = exRepeatsCountParams
         layoutToAdd.orientation = LinearLayout.HORIZONTAL
-        exNameText.text = exercisesArray[current]
-        exRepeatsCount.text = exercisesCountArray[current].toString()
+        exNameText.text = exercisesArray[current].name
+        exRepeatsCount.text = exercisesArray[current].currentCount.toString()
         exNameText.textSize = 20f
         exRepeatsCount.textSize = 20f
         exNameText.typeface = Typeface.create("Franklin",Typeface.BOLD_ITALIC)
