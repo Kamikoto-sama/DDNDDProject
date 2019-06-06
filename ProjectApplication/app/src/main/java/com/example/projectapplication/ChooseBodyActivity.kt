@@ -20,24 +20,20 @@ class ChooseBodyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_body)
+        preferences = getSharedPreferences("pref", Context.MODE_PRIVATE)
         intentToSend = Intent(this, MainActivity::class.java)
         if(intent.getBooleanExtra("needFirstLaunch", false) && !isHeightAndWeightPicked)
             startActivityForResult(Intent(this,FirstLaunchSliderActivity::class.java),2)
-        preferences = getSharedPreferences("pref", Context.MODE_PRIVATE)
-        if (intent.getStringExtra("bodyType") != null)
-            bodyType = intent.getStringExtra("bodyType")
+        height = preferences.getString("height", "0")
+        weight = preferences.getString("weight", "0")
         initializeBodySliderAdapter()
         setListenerForGoToMainButton()
         setListenerForOpenInfoButton()
         setListenersForSlideButtons()
-        defineBodyType()
 
     }
 
     private fun defineBodyType() {
-
-            weight = preferences.getString("weight", "0").toString()
-            height = preferences.getString("height", "0").toString()
             countBodyTypeByFormula(height.toDouble(), weight.toInt())
     }
 
@@ -86,7 +82,7 @@ class ChooseBodyActivity : AppCompatActivity() {
     private fun countBodyTypeByFormula(height: Double, weight: Int) {
         val metersHeight: Double = height / 100
         val formulaResult: Double = (weight / metersHeight / metersHeight)
-        var lBodyType = ""
+         var lBodyType = "ошибка"
         when {
             formulaResult < 18.5 -> {
                 lBodyType = "Эктоморф"
@@ -117,6 +113,7 @@ class ChooseBodyActivity : AppCompatActivity() {
         if(requestCode==2 && resultCode== Activity.RESULT_OK){
             height = data.getIntExtra("height", 0).toString()
             weight = data.getIntExtra("weight", 0).toString()
+            defineBodyType()
             isHeightAndWeightPicked = data.getBooleanExtra("isPicked", false)
             preferences
                 .edit()
@@ -125,5 +122,8 @@ class ChooseBodyActivity : AppCompatActivity() {
                 .apply()
 
         }
+    }
+
+    override fun onBackPressed() {
     }
 }

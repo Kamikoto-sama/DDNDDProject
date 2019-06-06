@@ -31,7 +31,7 @@
                 android:background="@drawable/back_for_fury_txt"
                 android:layout_marginRight="6dp"
                 android:layout_marginLeft="6dp"
-                android:text="text here"
+                android:text="выбери себе новое тело"
                 style="@style/usual_intro_text"
                 android:textSize="30sp"
                 android:textAllCaps="true"

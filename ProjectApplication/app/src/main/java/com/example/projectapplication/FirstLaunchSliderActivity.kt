@@ -18,9 +18,11 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
     lateinit var adapter: FirstLaunchSliderAdapter
     lateinit var preferences: SharedPreferences
     lateinit var activity: Activity
-
+lateinit var mDataBase: DataBase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mDataBase = DataBase(this)
+        mDataBase.init()
         setContentView(R.layout.activity_first_launch_slider)
         activity = this
         makeAdapter()

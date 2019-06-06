@@ -16,16 +16,16 @@ class ChooseBodyPicturesFragmentThree : Fragment() {
         val picture3: ImageView = v.findViewById(R.id.choose_body_picture11)
         val picture4: ImageView = v.findViewById(R.id.choose_body_picture12)
         picture1.setOnClickListener { v ->
-            bodyPictureClickHandle(R.drawable.choose_body_picture9,"Эндоморф 1", activity!!, picture1, v)
+            bodyPictureClickHandle(R.drawable.choose_body_picture9,"Капитан", activity!!, picture1, v)
         }
         picture2.setOnClickListener { v ->
-            bodyPictureClickHandle(R.drawable.choose_body_picture10,"Эндоморф 2", activity!!, picture2, v)
+            bodyPictureClickHandle(R.drawable.choose_body_picture10,"Суперчеловек", activity!!, picture2, v)
         }
         picture3.setOnClickListener { v ->
-            bodyPictureClickHandle(R.drawable.choose_body_picture11,"Эндоморф 3", activity!!, picture3, v)
+            bodyPictureClickHandle(R.drawable.choose_body_picture11,"Лорд", activity!!, picture3, v)
         }
         picture4.setOnClickListener { v ->
-            bodyPictureClickHandle(R.drawable.choose_body_picture12,"Эндоморф 4", activity!!, picture4, v)
+            bodyPictureClickHandle(R.drawable.choose_body_picture12,"Богач", activity!!, picture4, v)
         }
         return v
     }

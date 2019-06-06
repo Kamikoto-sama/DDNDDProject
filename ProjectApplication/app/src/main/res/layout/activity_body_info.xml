@@ -36,7 +36,7 @@
                 style="@style/usual_intro_text"
                 android:text="Рост. Тип тела"
                 android:textAllCaps="false"
-                android:textSize="27sp"
+                android:textSize="24sp"
                 android:layout_marginLeft="10dp"
         />
     </LinearLayout>
