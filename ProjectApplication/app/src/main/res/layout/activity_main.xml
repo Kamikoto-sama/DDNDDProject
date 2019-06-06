@@ -30,12 +30,27 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/body_mesomorph"
         />
+        <TextView
+                android:id="@+id/main_act_body_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/main_act_body_image"
+                style="@style/usual_intro_text"
+                android:textSize="25sp"
+                android:text="Имя здесь"
+                android:textAllCaps="false"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
 
+
+        />
         <TextView
                 android:id="@+id/main_act_body_height"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_act_body_name"
                 app:layout_constraintLeft_toRightOf="@id/main_act_body_image"
                 style="@style/usual_intro_text"
                 android:textSize="25sp"

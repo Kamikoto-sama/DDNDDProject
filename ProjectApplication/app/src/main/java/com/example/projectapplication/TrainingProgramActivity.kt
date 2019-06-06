@@ -15,16 +15,19 @@ class TrainingProgramActivity : AppCompatActivity() {
     lateinit var workoutBtnsArray: Array<Button>
     lateinit var mDataBase: DataBase
     lateinit var bodyType: String
+    var currentDay = 0
     var daysProgress = 0
     var exercisesProgress = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mDataBase = DataBase(this)
-        setContentView(R.layout.activity_training_program)
+        currentDay = mDataBase.getProgress().doneDaysCount
         userPreferences = getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
+        setContentView(R.layout.activity_training_program)
         getUserParameters()
         setButtonsListeners()
+        setProgressBarsAndCompletedDays()
     }
 
     private fun getUserParameters() {
@@ -69,8 +72,9 @@ class TrainingProgramActivity : AppCompatActivity() {
             findViewById(R.id.workout_btn_30)
         )
         for (i in 0..workoutBtnsArray.lastIndex) {
-            if (i < 15) workoutBtnsArray[i].setBackgroundResource(R.drawable.choose_workout_button_filled)
-            else workoutBtnsArray[i].setOnClickListener {
+            if (i < currentDay) workoutBtnsArray[i].setBackgroundResource(R.drawable.choose_workout_button_filled)
+             workoutBtnsArray[i].setOnClickListener {
+                 if (i == currentDay)
                 startActivity(
                     Intent(this, TrainingInfoActivity::class.java).putExtra(
                         "text",
@@ -94,9 +98,18 @@ class TrainingProgramActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        daysProgress = mDataBase.getProgress().daysCount
-        exercisesProgress = mDataBase.getProgress().exercisesCount
+        setProgressBarsAndCompletedDays()
+
+    }
+
+    private fun setProgressBarsAndCompletedDays() {
+        daysProgress = mDataBase.getProgress().daysProgress
+        exercisesProgress = mDataBase.getProgress().exercisesProgress
         progress_days_bar.progressValue = daysProgress.toFloat()
         progress_exercises_bar.progressValue = exercisesProgress.toFloat()
+        progress_days_bar_text.text = "$daysProgress %"
+        progress_exercises_bar_text.text = "$exercisesProgress %"
+        currentDay = mDataBase.getProgress().doneDaysCount
+        for (i in 0 until currentDay) workoutBtnsArray[i].setBackgroundResource(R.drawable.choose_workout_button_filled)
     }
 }

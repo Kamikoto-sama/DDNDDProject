@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_training_info.*
 
 class TrainingInfoActivity : AppCompatActivity() {
 
-    var currentDay = 0;
+    var currentDay = 0
     lateinit var exercisesArray : ArrayList<Exercise>
     lateinit var mDataBase: DataBase
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,8 +54,8 @@ class TrainingInfoActivity : AppCompatActivity() {
         exRepeatsCount.textSize = 20f
         exNameText.typeface = Typeface.create("Franklin",Typeface.BOLD_ITALIC)
         exRepeatsCount.typeface = Typeface.create("Franklin",Typeface.BOLD_ITALIC)
-        layoutToAdd.addView(exNameText)
         layoutToAdd.addView(exRepeatsCount)
+        layoutToAdd.addView(exNameText)
         mainLayout.addView(layoutToAdd)
     }
 }

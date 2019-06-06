@@ -34,10 +34,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setBodyLayoutText() {
-        var height = mDataBase.getBodyTypeInfo(bodyType).growth
-        var type = mDataBase.getBodyTypeInfo(bodyType).type
+        val typeInfo = mDataBase.getBodyTypeInfo(bodyType)
+        var height = typeInfo.growth
+        var type = typeInfo.type
+        var name = typeInfo.name
         preferences.edit().putInt("height", height).putString("type", type).apply()
-        main_act_body_height.text = "Рост: $height"
+        main_act_body_name.text = name
+        main_act_body_height.text = "Рост: $height см"
         main_act_body_type.text = "Тип: $type"
     }
 
@@ -64,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                         .putExtra("bodyType", intent.getStringExtra("bodyType"))
                     , 1
                 )
+                mDataBase.reset()
             }
 
         })
@@ -79,6 +83,15 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (data == null) return
         bodyType = data.getStringExtra("bodyType")
+        val body = mDataBase.getBodyTypeInfo(bodyType)
+        mDataBase.saveSelectedBody(
+            Body(
+                body.name,
+                body.type,
+                body.imagesIndex,
+                body.alterName
+            )
+        )
         val mDrawable = data.getIntExtra("bodyPictureId", 0)
         setBodyLayoutText()
         main_act_body_image.setImageResource(mDrawable)

@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_training_done.*
+import kotlinx.android.synthetic.main.activity_training_program.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -22,6 +23,8 @@ class WorkoutActivity : AppCompatActivity() {
     lateinit var exercisesArray: ArrayList<Exercise>
     var currentDay = 0
     var currentExercise = 1
+    var daysProgress = 0
+    var exercisesProgress = 0
     lateinit var mChronometer: Chronometer
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +43,11 @@ class WorkoutActivity : AppCompatActivity() {
             val nextLayoutButton = findViewById<FloatingActionButton>(R.id.btn_next_layout)
             val currentExerciseNumber = findViewById<TextView>(R.id.ex_num)
             val exTitleText = findViewById<TextView>(R.id.ex_title)
+            val exSubtitleText = findViewById<TextView>(R.id.ex_subtitle_text)
             val exImage = findViewById<ImageView>(R.id.ex_image)
             currentExerciseNumber.text = "$currentExercise / ${exercisesArray.count()}"
             exTitleText.text = exercisesArray[currentExercise - 1].name
+            exSubtitleText.text = exercisesArray[currentExercise - 1].desc
             exImage.setImageResource(matchIdWithPictures(exercisesArray[currentExercise - 1].image))
             nextLayoutButton.setOnClickListener {
                 makePauseLayout()
@@ -117,6 +122,8 @@ class WorkoutActivity : AppCompatActivity() {
 
     private fun makeDoneLayout() {
         setContentView(R.layout.activity_training_done)
+        mDataBase.saveDoneDay(exercisesArray)
+        setProgressBars()
         btn_next_layout.setOnClickListener {
             finish()
         }
@@ -141,7 +148,6 @@ class WorkoutActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        //super.onBackPressed()
         makeQuitAlertDialog()
 
     }
@@ -197,6 +203,15 @@ class WorkoutActivity : AppCompatActivity() {
         return idsDictionary[imageId]!!
     }
 
+    private fun setProgressBars() {
+        daysProgress = mDataBase.getProgress().daysProgress
+        exercisesProgress = mDataBase.getProgress().exercisesProgress
+        done_progress_days_bar.progressValue = daysProgress.toFloat()
+        done_progress_exercises_bar.progressValue = exercisesProgress.toFloat()
+        done_progress_days_bar_text.text = "$daysProgress %"
+        done_progress_exercises_bar_text.text = "$exercisesProgress %"
+        currentDay = mDataBase.getProgress().doneDaysCount
+    }
 }
 
 

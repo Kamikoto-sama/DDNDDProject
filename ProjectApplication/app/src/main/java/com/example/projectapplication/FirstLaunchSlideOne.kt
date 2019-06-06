@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_first_launch_slide_one.*
 
@@ -32,9 +33,13 @@ class FirstLaunchSlideOne : Fragment() {
         val nickFuryText = v.findViewById<TextView>(R.id.nick_fury_phrase)
         val nickFuryBtn = v.findViewById<Button>(R.id.nick_fury_phrase_btn)
         nickFuryImage.setBackgroundDrawable(null)
+        nickFuryText.text = nickFuryPhrasesArray[currentPhrase++]
         nickFuryBtn.setOnClickListener {
             nickFuryText.text = nickFuryPhrasesArray[currentPhrase++]
-            if(currentPhrase>3) currentPhrase=3
+            if (currentPhrase > 3) {
+                currentPhrase = 3
+                nickFuryBtn.visibility = LinearLayout.GONE
+            }
         }
         v.background = null
         return v
