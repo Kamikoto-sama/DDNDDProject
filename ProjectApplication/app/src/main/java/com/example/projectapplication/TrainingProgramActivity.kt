@@ -13,10 +13,14 @@ import kotlinx.android.synthetic.main.activity_training_program.*
 class TrainingProgramActivity : AppCompatActivity() {
     lateinit var userPreferences: SharedPreferences
     lateinit var workoutBtnsArray: Array<Button>
+    lateinit var mDataBase: DataBase
     lateinit var bodyType: String
+    var daysProgress = 0
+    var exercisesProgress = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mDataBase = DataBase(this)
         setContentView(R.layout.activity_training_program)
         userPreferences = getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
         getUserParameters()
@@ -88,5 +92,11 @@ class TrainingProgramActivity : AppCompatActivity() {
 
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        daysProgress = mDataBase.getProgress().daysCount
+        exercisesProgress = mDataBase.getProgress().exercisesCount
+        progress_days_bar.progressValue = daysProgress.toFloat()
+        progress_exercises_bar.progressValue = exercisesProgress.toFloat()
+    }
 }
