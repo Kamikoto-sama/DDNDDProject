@@ -104,6 +104,7 @@ class ChooseBodyActivity : AppCompatActivity() {
         if (data == null) return
         if(requestCode==1){
             var mDrawable : Int = data.getIntExtra("id", 0)
+            intentToSend.putExtra("bodyPictureId", mDrawable)
             bodyType = data.getStringExtra("bodyType")
             isBodyChosen = data.getBooleanExtra("isBodyChosen", isBodyChosen)
             nick_fury_text.text = "начать"

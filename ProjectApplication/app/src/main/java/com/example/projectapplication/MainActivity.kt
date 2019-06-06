@@ -26,8 +26,9 @@ class MainActivity : AppCompatActivity() {
         preferences = getSharedPreferences("preferences", Context.MODE_PRIVATE)
         activity = this
         setContentView(R.layout.activity_main)
-        main_act_body_height.text = "Рост: ${preferences.getInt("height",0)}"
-        main_act_body_type.text = "Тип: ${preferences.getString("type","")}"
+        main_act_body_height.text = "Рост: ${preferences.getInt("height", 0)}"
+        main_act_body_type.text = "Тип: ${preferences.getString("type", "")}"
+        main_act_body_image.setImageResource(preferences.getInt("bodyPictureId", 0))
         startFirstLaunchSliderActivity()
         setLayoutsListeners()
     }
@@ -78,8 +79,11 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (data == null) return
         bodyType = data.getStringExtra("bodyType")
+        val mDrawable = data.getIntExtra("bodyPictureId", 0)
         setBodyLayoutText()
-        preferences.edit().putBoolean(FIRST_LAUNCH, false).putString("bodyType", bodyType).apply()
+        main_act_body_image.setImageResource(mDrawable)
+        preferences.edit().putBoolean(FIRST_LAUNCH, false).putString("bodyType", bodyType)
+            .putInt("bodyPictureId", mDrawable).apply()
     }
 
     private fun setLayoutsListeners() {
