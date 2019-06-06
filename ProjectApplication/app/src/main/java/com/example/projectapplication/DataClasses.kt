@@ -11,8 +11,8 @@ class Exercise{
     var increment: Int = -1
 }
 
-data class BodyTypeInfo(val name: String, val imagesIndex: Int,
-                        val type: String, val growth: Int, val alterName: String)
+data class BodyTypeInfo(val name: String, val imagesIndex: Int, val type: String, 
+                        val growth: Int, val alterName: String, val ownImage: Int)
 
 data class Body(val name: String, val type: String, val imageIndex: Int,
                 val alterName: String)

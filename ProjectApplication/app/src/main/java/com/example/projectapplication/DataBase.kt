@@ -55,7 +55,8 @@ class DataBase(private val context: Context) :
                     Images integer,
                     Type text,
                     Growth integer,
-                    AlterName text)
+                    AlterName text,
+                    ImageIndex integer)
                 """
         db?.execSQL(createTable)
     }   
@@ -133,7 +134,8 @@ class DataBase(private val context: Context) :
         val cursor = db.rawQuery(query, null)   
         if (cursor.moveToFirst()){
             val body = BodyTypeInfo(cursor.getString(0), cursor.getInt(1),
-                cursor.getString(2), cursor.getInt(3), cursor.getString(4))
+                cursor.getString(2), cursor.getInt(3), cursor.getString(4),
+                cursor.getInt(5))
             cursor.close()
             return body
         }
