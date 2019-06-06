@@ -11,25 +11,17 @@ import kotlinx.android.synthetic.main.activity_choose_body.*
 class ChooseBodyActivity : AppCompatActivity() {
     lateinit var preferences: SharedPreferences
     lateinit var intentToSend: Intent
-    var isNeedToLaunch = true
     var isBodyChosen = false
     lateinit var bodyType: String
     lateinit var weight: String
     lateinit var height: String
-    var isFirstLaunch = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_body)
         intentToSend = Intent(this, MainActivity::class.java)
         preferences = getSharedPreferences("pref", Context.MODE_PRIVATE)
-        isNeedToLaunch = intent.getBooleanExtra("isNeedToLaunch", false)
-        isFirstLaunch = intent.getBooleanExtra("isFirstLaunch", true)
         if (intent.getStringExtra("bodyType") != null)
             bodyType = intent.getStringExtra("bodyType")
-        if (isFirstLaunch)
-            isBodyChosen = true
-        preferences.edit().putBoolean("isNeedToLaunch", isNeedToLaunch).apply()
-        doNotLaunchIfNeeded(preferences)
         initializeBodySliderAdapter()
         setListenerForGoToMainButton()
         setListenerForOpenInfoButton()
@@ -55,13 +47,6 @@ class ChooseBodyActivity : AppCompatActivity() {
         }
     }
 
-    private fun doNotLaunchIfNeeded(preferences: SharedPreferences) {
-        if (!preferences.getBoolean("isNeedToLaunch", true)) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
-    }
-
     private fun setListenerForOpenInfoButton() {
         chosen_body_image.setOnClickListener {
             if (intent.getStringExtra("bodyType") != null) {
@@ -74,12 +59,9 @@ class ChooseBodyActivity : AppCompatActivity() {
         nick_fury_text.setOnClickListener {
             if (isBodyChosen) {
                 intentToSend.putExtra("bodyType", bodyType)
-                preferences.edit().putBoolean("isNeedToLaunch", false).apply()
                 startActivity(intentToSend)
                 finish()
-            } /*else {
-                Toast.makeText(this, "Выбери себе тело чтобы продолжить", Toast.LENGTH_SHORT).show()
-            }*/
+            }
         }
     }
 
@@ -125,9 +107,7 @@ class ChooseBodyActivity : AppCompatActivity() {
                 choose_body_view_pager.currentItem = 2
             }
         }
-        if (isFirstLaunch)
             nick_fury_text.text = "Лучше выбрать: $lBodyType"
-        else nick_fury_text.text = "выбери себе тело"
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

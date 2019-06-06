@@ -1,8 +1,10 @@
 package com.example.projectapplication
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -10,10 +12,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var activity: Activity
+    lateinit var preferences: SharedPreferences
+    val FIRST_LAUNCH = "firstLaunch"
+    val CHOOSE_BODY_LAUNCH = "chooseBodyLaunch"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        preferences = getSharedPreferences("preferences", Context.MODE_PRIVATE)
         activity = this
+        setContentView(R.layout.activity_main)
+        startFirstLaunchSliderActivity()
+
 
         main_act_body_btn.setOnClickListener {
             startActivity(
@@ -29,6 +38,14 @@ class MainActivity : AppCompatActivity() {
 
         main_act_change_program_btn.setOnClickListener {
             makeChangeAlertDialog()
+        }
+    }
+
+    private fun startFirstLaunchSliderActivity() {
+        if (preferences.getBoolean(FIRST_LAUNCH, true)) {
+            startActivity(Intent(activity, FirstLaunchSliderActivity::class.java))
+            preferences.edit().putBoolean(FIRST_LAUNCH, false).apply()
+            finish()
         }
     }
 

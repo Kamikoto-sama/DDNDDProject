@@ -11,13 +11,22 @@
             android:theme="@style/AppTheme">
         <activity android:name=".DietActivity">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
-        <activity android:name=".BodyInfoActivity">
+        <activity android:name=".BodyInfoActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".WorkoutActivity">
+        <activity android:name=".WorkoutActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TrainingInfoActivity">
+        <activity android:name=".TrainingInfoActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".ChooseBodyActivity"
@@ -30,11 +39,7 @@
         <activity
                 android:name=".FirstLaunchSliderActivity"
                 android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 

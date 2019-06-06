@@ -18,19 +18,12 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
     lateinit var adapter: FirstLaunchSliderAdapter
     lateinit var preferences: SharedPreferences
     lateinit var activity: Activity
-    val pref_show_intro = "Intro"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_launch_slider)
         activity = this
         makeAdapter()
-
-        preferences = getSharedPreferences("IntroSlider", Context.MODE_PRIVATE)
-        if (!preferences.getBoolean(pref_show_intro, true)) {
-            startActivity(Intent(activity, ChooseBodyActivity::class.java))
-            finish()
-        }
     }
 
     fun makeAdapter() {
@@ -72,10 +65,6 @@ class FirstLaunchSliderActivity : AppCompatActivity() {
                         introIntent.putExtra("weight", enter_weight.currentValue.toString().toInt())
                         startActivity(introIntent)
                         finish()
-                        preferences
-                            .edit()
-                            .putBoolean(pref_show_intro, false)
-                            .apply()
                     }
                 } else {
                     intro_btn_next.text = "далее"
