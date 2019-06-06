@@ -29,7 +29,7 @@ class TrainingProgramActivity : AppCompatActivity() {
         else bodyType = userPreferences.getString("bodyType", "undefined")
         userPreferences.edit().putString("bodyType", bodyType).apply()
 
-        }
+    }
 
     private fun setButtonsListeners() {
         workoutBtnsArray = arrayOf(
@@ -67,19 +67,25 @@ class TrainingProgramActivity : AppCompatActivity() {
         for (i in 0..workoutBtnsArray.lastIndex) {
             if (i < 15) workoutBtnsArray[i].setBackgroundResource(R.drawable.choose_workout_button_filled)
             else workoutBtnsArray[i].setOnClickListener {
-                startActivity(Intent(this, TrainingInfoActivity::class.java).putExtra("text", workoutBtnsArray[i].text))
+                startActivity(
+                    Intent(this, TrainingInfoActivity::class.java).putExtra(
+                        "text",
+                        workoutBtnsArray[i].text
+                    ).putExtra("day", i)
+                )
             }
             val mLayoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             mLayoutParams.weight = 1f
-            mLayoutParams.setMargins(11,11,11,11)
+            mLayoutParams.setMargins(11, 11, 11, 11)
             workoutBtnsArray[i].layoutParams = mLayoutParams
+            start_workout_btn.setOnClickListener {
+                startActivity(Intent(this, WorkoutActivity::class.java).putExtra("day", i))
+            }
         }
-        start_workout_btn.setOnClickListener {
-            startActivity(Intent(this, WorkoutActivity::class.java))
-        }
+
     }
 
 
