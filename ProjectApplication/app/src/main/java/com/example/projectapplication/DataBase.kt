@@ -165,11 +165,11 @@ class DataBase(private val context: Context) :
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT * FROM Progress", null)
         cursor.moveToFirst()
-        val doneCount = cursor.getInt(0)
+        val doneDaysCount = cursor.getInt(0)
         cursor.close()
-        val daysDone = 100 * doneCount / 30
-        val exercisesDone = 100 * doneCount * 12 / 360
-        return Progress(daysDone, exercisesDone)
+        val daysDone = 100 * doneDaysCount / 30
+        val exercisesDone = 100 * doneDaysCount * 12 / 360
+        return Progress(daysDone, exercisesDone, doneDaysCount)
     }
     
     fun saveDoneDay(exercises: ArrayList<Exercise>){

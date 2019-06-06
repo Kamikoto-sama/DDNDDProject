@@ -19,7 +19,8 @@ data class Body(val name: String, val type: String, val imageIndex: Int,
 
 data class Day(var number:Int, var isDone: Boolean, var exType: ExerciseType)
 
-data class Progress(val daysCount:Int, val exercisesCount: Int)
+data class Progress(val daysProgress: Int, val exercisesProgress: Int,
+                    val doneDaysCount: Int)
 
 enum class ExerciseType{
     Top,
