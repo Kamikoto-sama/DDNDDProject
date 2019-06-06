@@ -1,5 +1,5 @@
 Капитан|1|Эндоморф|183|cap|hohland_spidey_ph
-Пламя|2|Эктоморфм|183|torch_man|torch_man_ph
+Пламя|2|Эктоморф|183|torch_man|torch_man_ph
 Суперчеловек|3|Эндоморф|185|super|super_ph
 Громовержец|4|Мезоморф|190|thunder|thunder_ph
 Дъявол|5|Мезоморф|178|daredevil|daredevil_ph
