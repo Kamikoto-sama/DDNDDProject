@@ -1,5 +1,6 @@
 package com.example.projectapplication
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -16,16 +17,44 @@ class ChooseBodyPicturesFragmentTwo : Fragment() {
         val picture3: ImageView = v.findViewById(R.id.choose_body_picture7)
         val picture4: ImageView = v.findViewById(R.id.choose_body_picture8)
         picture1.setOnClickListener { v ->
-            bodyPictureClickHandle(R.drawable.choose_body_picture5,"Громовержец", activity!!, picture1, v)
+            bodyPictureClickHandle(
+                R.drawable.choose_body_picture5,
+                R.drawable.thunder_back,
+                "Громовержец",
+                activity!!,
+                picture1,
+                v
+            )
         }
         picture2.setOnClickListener { v ->
-            bodyPictureClickHandle(R.drawable.choose_body_picture6,"Дъявол", activity!!, picture2, v)
+            bodyPictureClickHandle(
+                R.drawable.choose_body_picture6,
+                R.drawable.devil_back,
+                "Дъявол",
+                activity!!,
+                picture2,
+                v
+            )
         }
         picture3.setOnClickListener { v ->
-            bodyPictureClickHandle(R.drawable.choose_body_picture7,"Пантера", activity!!, picture3, v)
+            bodyPictureClickHandle(
+                R.drawable.choose_body_picture7,
+                R.drawable.blacktiger_back,
+                "Пантера",
+                activity!!,
+                picture3,
+                v
+            )
         }
         picture4.setOnClickListener { v ->
-            bodyPictureClickHandle(R.drawable.choose_body_picture8,"Паук-3", activity!!, picture4, v)
+            bodyPictureClickHandle(
+                R.drawable.choose_body_picture8,
+                R.drawable.garf_back,
+                "Паук-3",
+                activity!!,
+                picture4,
+                v
+            )
         }
         return v
     }

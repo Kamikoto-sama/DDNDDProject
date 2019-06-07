@@ -29,7 +29,8 @@
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.78"
             app:layout_constraintHeight_percent="0.14"
-            style="@style/usual_text"
+            style="@style/usual_intro_text"
+            android:textStyle="normal"
             app:layout_constraintLeft_toLeftOf="@id/nick_fury"
             app:layout_constraintRight_toRightOf="@id/nick_fury"
             app:layout_constraintTop_toTopOf="@id/nick_fury"
@@ -37,7 +38,7 @@
             android:layout_marginBottom="70dp"
             android:background="@drawable/nick_fury_phrase_background"
             android:gravity="center"
-            android:textSize="18dp"
+            android:textSize="17dp"
 
     />
     <Button

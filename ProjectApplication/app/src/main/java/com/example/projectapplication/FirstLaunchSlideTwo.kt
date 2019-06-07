@@ -14,7 +14,7 @@ import android.widget.TextView
 
 @Suppress("DEPRECATION")
 class FirstLaunchSlideTwo : Fragment() {
-var currentPhrase = 0
+    var currentPhrase = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,13 +30,13 @@ var currentPhrase = 0
         val doctorAngelImage = v.findViewById<ImageView>(R.id.doctor_angel)
         val doctorAngelText = v.findViewById<TextView>(R.id.doctor_angel_phrase)
         val doctorAngelBtn = v.findViewById<Button>(R.id.doctor_angel_phrase_btn)
-doctorAngelImage.setBackgroundDrawable(null)
+        doctorAngelImage.setBackgroundDrawable(null)
         doctorAngelText.text = doctorAngelaPhrases[currentPhrase++]
 
         doctorAngelBtn.setOnClickListener {
             doctorAngelText.text = doctorAngelaPhrases[currentPhrase++]
-            if(currentPhrase>3){
-                currentPhrase=3
+            if (currentPhrase > 3) {
+                currentPhrase = 3
                 doctorAngelBtn.visibility = LinearLayout.GONE
             }
         }

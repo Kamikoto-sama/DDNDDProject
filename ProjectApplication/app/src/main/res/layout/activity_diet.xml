@@ -7,7 +7,8 @@
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".DietActivity">
+            tools:context=".DietActivity"
+    android:background="@drawable/activity_background_gradient_1">
 
         <android.support.constraint.ConstraintLayout
                 android:id="@+id/diet_activity_image1"
@@ -50,14 +51,9 @@
 
         <TextView
                 android:id="@+id/diet_activity_text1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/diet_texts"
                 app:layout_constraintTop_toBottomOf="@id/diet_activity_image1"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:text="-Кинь мне текст \n -А его пока нет"
-                style="@style/usual_text"
+                android:text="@string/diet_text_main"
         />
 
         <android.support.constraint.ConstraintLayout
@@ -100,14 +96,9 @@
 
         <TextView
                 android:id="@+id/diet_activity_text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/diet_texts"
                 app:layout_constraintTop_toBottomOf="@id/diet_activity_image2"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:text="-Кинь мне текст \n -А его пока нет"
-                style="@style/usual_text"
+                android:text="@string/diet_text_ekto"
         />
 
         <android.support.constraint.ConstraintLayout
@@ -150,14 +141,9 @@
 
         <TextView
                 android:id="@+id/diet_activity_text3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/diet_texts"
                 app:layout_constraintTop_toBottomOf="@id/diet_activity_image3"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:text="-Кинь мне текст \n -А его пока нет"
-                style="@style/usual_text"
+                android:text="@string/diet_text_mezo"
         />
 
         <android.support.constraint.ConstraintLayout
@@ -200,14 +186,9 @@
 
         <TextView
                 android:id="@+id/diet_activity_text4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/diet_texts"
                 app:layout_constraintTop_toBottomOf="@id/diet_activity_image4"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:text="-Кинь мне текст \n-А его пока нет"
-                style="@style/usual_text"
+                android:text="@string/diet_text_endo"
         />
 
 

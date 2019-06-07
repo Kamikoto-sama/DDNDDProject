@@ -9,9 +9,13 @@
 
     <ImageView
             android:id="@+id/doctor_angel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/doctor_angel"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:scaleType="fitStart"
     />
 
     <TextView
@@ -23,7 +27,8 @@
             app:layout_constraintWidth_percent="0.78"
             app:layout_constraintHeight_percent="0.15"
             android:textSize="18sp"
-            style="@style/usual_text"
+            android:textStyle="normal"
+            style="@style/usual_intro_text"
             android:background="@drawable/first_launch_doctor_angel_slider"
             app:layout_constraintLeft_toLeftOf="@id/doctor_angel"
             app:layout_constraintRight_toRightOf="@id/doctor_angel"

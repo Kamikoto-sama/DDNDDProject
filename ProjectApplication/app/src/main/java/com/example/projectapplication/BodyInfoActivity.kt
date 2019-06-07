@@ -18,6 +18,7 @@ class BodyInfoActivity : AppCompatActivity() {
     lateinit var randomExercises: ArrayList<Exercise>
     var height = 0
     var id = 0
+    var backId = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mDataBase = DataBase(this)
@@ -31,6 +32,7 @@ class BodyInfoActivity : AppCompatActivity() {
     private fun getDataFromIntent() {
         bodyType = intent.getStringExtra("bodyType")
         id = intent.getIntExtra("id", 0)
+        backId = intent.getIntExtra("backId", 0)
     }
 
     private fun setLayoutTextAndListeners() {
@@ -41,6 +43,7 @@ class BodyInfoActivity : AppCompatActivity() {
             mIntent.putExtra("bodyType", bodyType)
             mIntent.putExtra("isBodyChosen", true)
             mIntent.putExtra("id", id)
+            mIntent.putExtra("backId", backId)
             setResult(Activity.RESULT_OK, mIntent)
             finish()
         }
@@ -120,4 +123,6 @@ class BodyInfoActivity : AppCompatActivity() {
         )
         return idsDictionary[imageId]!!
     }
+
+
 }

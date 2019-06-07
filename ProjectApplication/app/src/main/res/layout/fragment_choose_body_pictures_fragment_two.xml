@@ -6,11 +6,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:context=".ChooseBodyPicturesFragmentTwo"
-        android:background="@null">
+       android:background="@drawable/activity_background_gradient_1">
 
     <ImageView
             android:id="@+id/choose_body_picture5"
             android:src="@drawable/choose_body_picture5"
+            android:background="@drawable/thunder_back"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintWidth_default="percent"
@@ -31,6 +32,7 @@
             app:layout_constraintWidth_percent="0.48"
             app:layout_constraintHeight_percent="0.48"
             android:src="@drawable/choose_body_picture6"
+            android:background="@drawable/devil_back"
             app:layout_constraintLeft_toRightOf="@id/choose_body_picture5"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/choose_body_picture8"
@@ -45,6 +47,7 @@
             app:layout_constraintWidth_percent="0.48"
             app:layout_constraintHeight_percent="0.48"
             android:src="@drawable/choose_body_picture7"
+            android:background="@drawable/blacktiger_back"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/choose_body_picture8"
             app:layout_constraintTop_toBottomOf="@id/choose_body_picture5"
@@ -59,6 +62,7 @@
             app:layout_constraintWidth_percent="0.48"
             app:layout_constraintHeight_percent="0.48"
             android:src="@drawable/choose_body_picture8"
+            android:background="@drawable/garf_back"
             app:layout_constraintLeft_toRightOf="@id/choose_body_picture7"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/choose_body_picture6"

@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         main_act_body_type.text = "Тип: ${preferences.getString("type", "")}"
         main_act_body_name.text = preferences.getString("name", "")
         main_act_body_image.setImageResource(preferences.getInt("bodyPictureId", 0))
+        main_act_body_layout.setBackgroundResource(preferences.getInt("bodyBackgroundId", 0))
         startFirstLaunchSliderActivity()
         setLayoutsListeners()
     }
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         var height = typeInfo.growth
         var type = typeInfo.type
         var name = typeInfo.name
-        preferences.edit().putInt("height", height).putString("type", type).putString("name",name).apply()
+        preferences.edit().putInt("height", height).putString("type", type).putString("name", name).apply()
         main_act_body_name.text = name
         main_act_body_height.text = "Рост: $height см"
         main_act_body_type.text = "Тип: $type"
@@ -94,10 +95,12 @@ class MainActivity : AppCompatActivity() {
             )
         )
         val mDrawable = data.getIntExtra("bodyPictureId", 0)
+        val mBack = data.getIntExtra("bodyBackgroundId", 0)
         setBodyLayoutText()
         main_act_body_image.setImageResource(mDrawable)
+        main_act_body_layout.setBackgroundResource(mBack)
         preferences.edit().putBoolean(FIRST_LAUNCH, false).putString("bodyType", bodyType)
-            .putInt("bodyPictureId", mDrawable).apply()
+            .putInt("bodyPictureId", mDrawable).putInt("bodyBackgroundId", mBack).apply()
     }
 
     private fun setLayoutsListeners() {

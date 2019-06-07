@@ -8,11 +8,23 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
-class ImageViewOnClickHandler{
+class ImageViewOnClickHandler {
     companion object {
-        fun bodyPictureClickHandle(drawable : Int, bodyType : String, mActivity : Activity, picture : ImageView, v: View){
-            AnimationAdapter.pictureClickAnimation(picture, v!!.context)
-            mActivity!!.startActivityForResult(Intent(mActivity,BodyInfoActivity::class.java).putExtra("bodyType", bodyType).putExtra("id",drawable),1)
+        fun bodyPictureClickHandle(
+            drawable: Int,
+            backDrawable: Int,
+            bodyType: String,
+            mActivity: Activity,
+            picture: ImageView,
+            v: View
+        ) {
+            AnimationAdapter.pictureClickAnimation(picture, v.context)
+            mActivity.startActivityForResult(
+                Intent(mActivity, BodyInfoActivity::class.java).putExtra(
+                    "bodyType",
+                    bodyType
+                ).putExtra("id", drawable).putExtra("backId", backDrawable), 1
+            )
         }
     }
 
