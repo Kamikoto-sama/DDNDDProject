@@ -40,7 +40,7 @@
             app:layout_constraintWidth_percent="0.3"
             app:layout_constraintHeight_percent="0.2"
             app:cpbProgressColor="#0af"
-            app:cpbBackgroundColor="#0000"
+            app:cpbBackgroundColor="#0af"
             app:cpbProgressWidth="20dp"
             app:cpbProgressValue="50"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -51,7 +51,6 @@
     <TextView
             android:id="@+id/done_progress_days_bar_text"
             style="@style/usual_text"
-            android:text="50%"
             app:layout_constraintLeft_toLeftOf="@id/done_progress_days_bar"
             app:layout_constraintRight_toRightOf="@id/done_progress_days_bar"
             app:layout_constraintTop_toTopOf="@id/done_progress_days_bar"
@@ -67,7 +66,7 @@
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintHeight_percent="0.3"
             app:cpbProgressColor="#0af"
-            app:cpbBackgroundColor="#0000"
+            app:cpbBackgroundColor="#0af"
             app:cpbProgressValue="40"
             app:cpbProgressWidth="20dp"
             app:layout_constraintRight_toRightOf="parent"
@@ -78,7 +77,6 @@
     <TextView
             android:id="@+id/done_progress_exercises_bar_text"
             style="@style/usual_text"
-            android:text="40%"
             app:layout_constraintLeft_toLeftOf="@id/done_progress_exercises_bar"
             app:layout_constraintRight_toRightOf="@id/done_progress_exercises_bar"
             app:layout_constraintTop_toTopOf="@id/done_progress_exercises_bar"

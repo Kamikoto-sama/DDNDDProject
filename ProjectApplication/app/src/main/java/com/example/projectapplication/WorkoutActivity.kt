@@ -46,7 +46,7 @@ class WorkoutActivity : AppCompatActivity() {
             val exSubtitleText = findViewById<TextView>(R.id.ex_subtitle_text)
             val exImage = findViewById<ImageView>(R.id.ex_image)
             currentExerciseNumber.text = "$currentExercise / ${exercisesArray.count()}"
-            exTitleText.text = exercisesArray[currentExercise - 1].name
+            exTitleText.text = "${exercisesArray[currentExercise - 1].name}  x  ${exercisesArray[currentExercise-1].maxCount}"
             exSubtitleText.text = exercisesArray[currentExercise - 1].desc
             exImage.setImageResource(matchIdWithPictures(exercisesArray[currentExercise - 1].image))
             nextLayoutButton.setOnClickListener {

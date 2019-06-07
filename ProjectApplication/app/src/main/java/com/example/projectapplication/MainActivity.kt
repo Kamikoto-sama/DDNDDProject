@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         main_act_body_height.text = "Рост: ${preferences.getInt("height", 0)}"
         main_act_body_type.text = "Тип: ${preferences.getString("type", "")}"
+        main_act_body_name.text = preferences.getString("name", "")
         main_act_body_image.setImageResource(preferences.getInt("bodyPictureId", 0))
         startFirstLaunchSliderActivity()
         setLayoutsListeners()
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         var height = typeInfo.growth
         var type = typeInfo.type
         var name = typeInfo.name
-        preferences.edit().putInt("height", height).putString("type", type).apply()
+        preferences.edit().putInt("height", height).putString("type", type).putString("name",name).apply()
         main_act_body_name.text = name
         main_act_body_height.text = "Рост: $height см"
         main_act_body_type.text = "Тип: $type"

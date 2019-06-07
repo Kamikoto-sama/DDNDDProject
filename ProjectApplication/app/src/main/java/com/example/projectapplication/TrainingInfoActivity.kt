@@ -39,11 +39,13 @@ class TrainingInfoActivity : AppCompatActivity() {
         val exNameText = TextView(applicationContext)
         val exRepeatsCount = TextView(applicationContext)
         var lparams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        val exNameTextParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)
-        val exRepeatsCountParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+        val exNameTextParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+        val exRepeatsCountParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
         lparams.setMargins(15,15,15,15)
-        exNameTextParams.weight = 4f
-        exRepeatsCountParams.weight = 1f
+        exNameTextParams.weight = 1f
+        exRepeatsCountParams.weight = 5f
+        exNameTextParams.setMargins(0,5,5,5)
+        exRepeatsCountParams.setMargins(0,5,5,5)
         layoutToAdd.layoutParams = lparams
         exNameText.layoutParams = exNameTextParams
         exRepeatsCount.layoutParams = exRepeatsCountParams
@@ -52,10 +54,10 @@ class TrainingInfoActivity : AppCompatActivity() {
         exRepeatsCount.text = exercisesArray[current].currentCount.toString()
         exNameText.textSize = 20f
         exRepeatsCount.textSize = 20f
-        exNameText.typeface = Typeface.create("Franklin",Typeface.BOLD_ITALIC)
-        exRepeatsCount.typeface = Typeface.create("Franklin",Typeface.BOLD_ITALIC)
-        layoutToAdd.addView(exRepeatsCount)
+        exNameText.typeface = Typeface.create(Typeface.DEFAULT,Typeface.NORMAL)
+        exRepeatsCount.typeface = Typeface.create(Typeface.DEFAULT,Typeface.NORMAL)
         layoutToAdd.addView(exNameText)
+        layoutToAdd.addView(exRepeatsCount)
         mainLayout.addView(layoutToAdd)
     }
 }
