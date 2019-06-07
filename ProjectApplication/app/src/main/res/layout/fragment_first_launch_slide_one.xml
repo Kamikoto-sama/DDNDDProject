@@ -28,7 +28,7 @@
             app:layout_constraintWidth_default="percent"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintWidth_percent="0.78"
-            app:layout_constraintHeight_percent="0.14"
+            app:layout_constraintHeight_percent="0.17"
             style="@style/usual_intro_text"
             android:textStyle="normal"
             app:layout_constraintLeft_toLeftOf="@id/nick_fury"
