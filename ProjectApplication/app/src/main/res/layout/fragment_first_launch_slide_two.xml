@@ -43,7 +43,7 @@
             android:layout_height="20dp"
             android:background="@drawable/nick_fury_phrase_btn"
             app:layout_constraintRight_toRightOf="@id/doctor_angel_phrase"
-            app:layout_constraintBottom_toBottomOf="@id/doctor_angel_phrase"
+            app:layout_constraintTop_toBottomOf="@id/doctor_angel_phrase"
     />
 
 </android.support.constraint.ConstraintLayout>
