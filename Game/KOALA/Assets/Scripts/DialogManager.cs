@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class DialogManager : MonoBehaviour
 {
-    public int ReplicaIndex;
     public DialogueNode[] Replicas;
+    public DialogBox DialogBox;
+    
+    private int _currentReplica;
     private bool _dialogStarted;
     private bool _playerInArea;
-    public DialogBox DialogBox;
 
     private void OnTriggerEnter2D(Collider2D other) => _playerInArea = true;
 
@@ -24,13 +25,13 @@ public class DialogManager : MonoBehaviour
     {
         if (!_dialogStarted) return;
         GUI.Box (GetDialogBoxRect(), "");
-        GUI.Label (GetDialogLabelRect(), Replicas[ReplicaIndex].NpcText);
-        for (var i = 0; i < Replicas[ReplicaIndex].PlayerAnswer.Length; i++) {
-            if (!GUI.Button(GetButtonRect(i), Replicas[ReplicaIndex].PlayerAnswer[i].Text)) continue;
-            if (Replicas[ReplicaIndex].PlayerAnswer[i].EndDialog) {
+        GUI.Label (GetDialogLabelRect(), Replicas[_currentReplica].NpcText);
+        for (var i = 0; i < Replicas[_currentReplica].PlayerAnswer.Length; i++) {
+            if (!GUI.Button(GetButtonRect(i), Replicas[_currentReplica].PlayerAnswer[i].Text)) continue;
+            if (Replicas[_currentReplica].PlayerAnswer[i].EndDialog) {
                 _dialogStarted = false;
             }
-            ReplicaIndex = Replicas[ReplicaIndex].PlayerAnswer[i].ToNode;
+            _currentReplica = Replicas[_currentReplica].PlayerAnswer[i].ToNode;
         }
     }
 
@@ -63,6 +64,7 @@ public class DialogManager : MonoBehaviour
 public class DialogueNode
 {
     public string NodeName;
+    [TextArea(3, 100)]
     public string NpcText;
     public Answer[] PlayerAnswer;
 }
