@@ -1,11 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MovingObject
 {
-    private float _direction;
+    private float speedX;
     private bool isLookingRight = true;
-    private bool isOnTheGround = true;
-    private float walkingSpeed = 13f;
+    private bool isGrounded;
+    private bool isCrouching = false;
+    public float walkingSpeed;
+    public float runningSpeed;
+    public float crouchingSpeed;
+    public float verticalImpulse;
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
 
@@ -15,43 +21,65 @@ public class Player : MovingObject
         _boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        Walk();
-        if (Input.GetKeyDown(KeyCode.Space))
-            Jump();
+        CheckForCrouch();
+        Move();
         CheckForSpriteFlip();
     }
 
-    private void CheckForSpriteFlip()
+    private void Move()
     {
-        if(_direction < 0 && isLookingRight) 
-            Flip();
-        else if(_direction > 0 && !isLookingRight) 
-            Flip();
+        MoveX();
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            Jump();
     }
 
-    void Walk()
+    private void MoveX()
     {
-        _direction = Input.GetAxis("Horizontal");
-        var position = _rigidbody2D.transform.position;
-        _rigidbody2D.MovePosition(new Vector2(
-            position.x + walkingSpeed * Time.deltaTime * _direction,
-            position.y));
+        float movingSpeed =
+            !isCrouching ? Input.GetKey(KeyCode.LeftShift) ? runningSpeed : walkingSpeed : crouchingSpeed;
+        if (Input.GetKey(KeyCode.A))
+            speedX = -movingSpeed;
+        else if (Input.GetKey(KeyCode.D))
+            speedX = movingSpeed;
+        transform.Translate(speedX, 0, 0);
+        speedX = 0;
+    }
+
+    private void CheckForCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+            isCrouching = !isCrouching;
     }
 
     void Jump()
     {
-        _rigidbody2D.AddForce(new Vector2(0, 4000));
-        isOnTheGround = false;
+        _rigidbody2D.AddForce(new Vector2(0, verticalImpulse), ForceMode2D.Impulse);
+        isGrounded = false;
+    }
+
+    private void CheckForSpriteFlip()
+    {
+        var direction = Input.GetAxis("Horizontal");
+        if (direction < 0 && isLookingRight)
+            Flip();
+        else if (direction > 0 && !isLookingRight)
+            Flip();
     }
 
     void Flip()
     {
         isLookingRight = !isLookingRight;
-        Vector3 theScale = transform.localScale;
+        var transform1 = transform;
+        Vector3 theScale = transform1.localScale;
         theScale.x *= -1;
-        transform.localScale = theScale;
+        transform1.localScale = theScale;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+            isGrounded = true;
     }
 }
