@@ -1,9 +1,12 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MovingObject
 {
+    public Sprite crouchingSprite;
+    public Sprite usualSprite;
     private float speedX;
     private bool isLookingRight = true;
     private bool isGrounded;
@@ -13,18 +16,23 @@ public class Player : MovingObject
     public float crouchingSpeed;
     public float verticalImpulse;
     private Rigidbody2D _rigidbody2D;
-    private BoxCollider2D _boxCollider2D;
+    private BoxCollider2D _usualboxCollider2D;
+    private BoxCollider2D _crouchingboxCollider2D;
 
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _boxCollider2D = GetComponent<BoxCollider2D>();
+        _usualboxCollider2D = GetComponent<BoxCollider2D>();
+        _crouchingboxCollider2D = GetComponent<BoxCollider2D>();
+        _crouchingboxCollider2D.enabled = false;
     }
 
     private void FixedUpdate()
     {
-        CheckForCrouch();
-        Move();
+        if (Input.GetKeyDown(KeyCode.C))
+            CheckForCrouch();
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.Space))
+            Move();
         CheckForSpriteFlip();
     }
 
@@ -49,8 +57,24 @@ public class Player : MovingObject
 
     private void CheckForCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-            isCrouching = !isCrouching;
+        isCrouching = !isCrouching;
+        SetCurrentSprite();
+        SetCurrentBoxCollider2D();
+    }
+
+    private void SetCurrentBoxCollider2D()
+    {
+        _crouchingboxCollider2D.enabled = isCrouching;
+        _usualboxCollider2D.enabled = !isCrouching;
+    }
+
+    private void SetCurrentSprite()
+    {
+        var currntSpriteRenderer = GetComponent<SpriteRenderer>();
+        currntSpriteRenderer.sprite = isCrouching ? crouchingSprite : usualSprite;
+        var size = currntSpriteRenderer.size;
+        size = isCrouching ? new Vector2(size.x / 1.8f, size.y / 1.8f) : new Vector2(size.x * 1.8f, size.y * 1.8f);
+        currntSpriteRenderer.size = size;
     }
 
     void Jump()
