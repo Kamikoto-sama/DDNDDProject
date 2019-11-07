@@ -73,7 +73,7 @@ public class Player : MovingObject
         var currntSpriteRenderer = GetComponent<SpriteRenderer>();
         currntSpriteRenderer.sprite = isCrouching ? crouchingSprite : usualSprite;
         var size = currntSpriteRenderer.size;
-        size = isCrouching ? new Vector2(size.x / 1.8f, size.y / 1.8f) : new Vector2(size.x * 1.8f, size.y * 1.8f);
+        size = isCrouching ? new Vector2(size.x / 2.5f, size.y / 2.5f) : new Vector2(size.x * 2.5f, size.y * 2.5f);
         currntSpriteRenderer.size = size;
     }
 
