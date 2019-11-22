@@ -2298,6 +2298,11 @@ PrefabInstance:
       propertyPath: whatIsLadder.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 4172783921947373862, guid: 9f5d55fabeb30504d982abdd15b504ab,
+        type: 3}
+      propertyPath: runSpeed
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5d55fabeb30504d982abdd15b504ab, type: 3}
 --- !u!1001 &7481247726194146215

@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetButtonUp("Crouch"))
             crouch = false;
         CheckForLadder();
+        if (Input.GetButtonDown("Run"))
+            runSpeed *= 2;
+        else if (Input.GetButtonUp("Run"))
+            runSpeed /= 2;
     }
 
     private void CheckForLadder()
