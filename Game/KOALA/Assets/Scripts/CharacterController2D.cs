@@ -6,6 +6,7 @@ public class CharacterController2D : MonoBehaviour
 
     [Range(0, 1)] [SerializeField]
     private float m_CrouchSpeed = .36f; // Amount of maxSpeed applied to crouching movement. 1 = 100%
+    private float m_RunSpeed = 2f; // Amount of maxSpeed applied to crouching movement. 1 = 100%
 
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f; // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false; // Whether or not a player can steer while jumping;
@@ -42,13 +43,14 @@ public class CharacterController2D : MonoBehaviour
     }
 
 
-    public void Move(float move, bool crouch, bool jump)
+    public void Move(float move, bool crouch, bool jump, bool run)
     {
-        if (crouch)
+        if (run)
+            move *= m_RunSpeed;
+        else if (crouch)
             move *= m_CrouchSpeed;
-        if (!crouch)
-            if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-                crouch = true;
+        else if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
+            crouch = true;
 
         if (m_Grounded || m_AirControl)
         {

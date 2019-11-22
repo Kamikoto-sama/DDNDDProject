@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,12 @@ public class PlayerMovement : MonoBehaviour
     public float climbSpeed;
     float horizontalMove;
     float verticalMove;
-    public bool jump = false;
-    public bool crouch = false;
+    public Transform CheckCeiling;
+    public bool jump;
+    public bool crouch;
+    public bool run;
+    public bool isCrossingCeiling;
+    public bool isStuck;
     public LayerMask whatIsLadder;
     public LayerMask whatIsGround;
     public float distance;
@@ -19,17 +24,39 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        isCrossingCeiling = Physics2D.OverlapCircle(CheckCeiling.position, .1f, whatIsGround);
+        CheckForJump();
+        CheckForCrouch();
+        CheckForLadder();
+        CheckForRun();
+    }
+
+    void FixedUpdate()
+    {
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, run);
+        jump = false;
+    }
+
+    private void CheckForJump()
+    {
         if (Input.GetButtonDown("Jump"))
             jump = true;
-        if (Input.GetButtonDown("Crouch"))
+    }
+
+    private void CheckForCrouch()
+    {
+        if (Input.GetButtonDown("Crouch") && !isStuck)
             crouch = true;
-        else if (Input.GetButtonUp("Crouch"))
+        if (Input.GetButtonUp("Crouch"))
+            if (!isCrossingCeiling)
+                crouch = false;
+        if (crouch && isCrossingCeiling)
+            isStuck = true;
+        if (isStuck && !isCrossingCeiling)
+        {
             crouch = false;
-        CheckForLadder();
-        if (Input.GetButtonDown("Run"))
-            runSpeed *= 2;
-        else if (Input.GetButtonUp("Run"))
-            runSpeed /= 2;
+            isStuck = false;
+        }
     }
 
     private void CheckForLadder()
@@ -40,9 +67,6 @@ public class PlayerMovement : MonoBehaviour
         controller.Climb(verticalMove, jump);
     }
 
-    void FixedUpdate()
-    {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
-    }
+    private void CheckForRun() =>
+        run = Input.GetButton("Run") && !crouch;
 }
