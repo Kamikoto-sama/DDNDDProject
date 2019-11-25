@@ -5,8 +5,8 @@ public class NPCVision : MonoBehaviour
 {
     public string targetTag = "Player";
     public int rays = 12;
-    public int distance = 15;
-    public float angle = 30;
+    public int distance = 25;
+    public float angle = 35;
     public Vector2 offset;
     public float rotation;
     public bool isReverse = false;
@@ -80,7 +80,9 @@ public class NPCVision : MonoBehaviour
 
     void Update()
     {
-        if (Math.Abs(transform.position.x - _target.transform.position.x) < distance)
+        if (isReverse && offset.x > 0 || !isReverse && offset.x < 0)
+            offset.x = -offset.x;
+        if (Math.Abs(transform.position.x - _target.transform.position.x) < distance + 30)
         {
             if (RayToScan())
             {
