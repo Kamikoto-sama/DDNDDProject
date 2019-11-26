@@ -1216,6 +1216,7 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: d44847c1761743a42b1b1c3daf919cd7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29c8598e8bbb48e4988f1ec1123af3fd, type: 3}
+<<<<<<< HEAD
 --- !u!1 &678897926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1296,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+=======
+>>>>>>> parent of 248e845... Lights
 --- !u!1001 &709011944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2917,11 +2920,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 2073710367441233145, guid: 9f5d55fabeb30504d982abdd15b504ab,
         type: 3}
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of 248e845... Lights
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5d55fabeb30504d982abdd15b504ab, type: 3}
 --- !u!1001 &1310899050
@@ -4257,12 +4263,20 @@ PrefabInstance:
     - target: {fileID: 2073710367207057122, guid: 9f5d55fabeb30504d982abdd15b504ab,
         type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: -6.96
+=======
+      value: -7.5
+>>>>>>> parent of 248e845... Lights
       objectReference: {fileID: 0}
     - target: {fileID: 2073710367207057122, guid: 9f5d55fabeb30504d982abdd15b504ab,
         type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< HEAD
       value: 0.18
+=======
+      value: 1.9
+>>>>>>> parent of 248e845... Lights
       objectReference: {fileID: 0}
     - target: {fileID: 2073710367207057122, guid: 9f5d55fabeb30504d982abdd15b504ab,
         type: 3}
