@@ -34,7 +34,7 @@ public class Grabber : MonoBehaviour
 
         if (grabbed)
         {
-            hit.collider.gameObject.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position * 2;
+            hit.collider.gameObject.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
             
     }

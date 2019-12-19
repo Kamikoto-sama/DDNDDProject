@@ -18,8 +18,8 @@ TagManager:
   - 
   - Ladder
   - Ground
-  - 
-  - 
+  - Crate
+  - Player
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Ladder
     uniqueID: 2828528929
+    locked: 0
+  - name: Crate
+    uniqueID: 4175346673
     locked: 0

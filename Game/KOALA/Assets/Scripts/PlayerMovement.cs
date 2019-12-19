@@ -37,7 +37,11 @@ public class PlayerMovement : MonoBehaviour
     private void CheckForJump()
     {
         if (Input.GetButtonDown("Jump"))
+        {
             jump = true;
+            print("space pressed");
+        }
+            
     }
 
     private void CheckForCrouch()
