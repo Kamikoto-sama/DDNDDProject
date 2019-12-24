@@ -17,10 +17,12 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsLadder;
     public LayerMask whatIsGround;
     public float distance;
+    public Animator animator;
 
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetFloat("Speeds", Mathf.Abs(horizontalMove));
         isCrossingCeiling = Physics2D.OverlapCircle(CheckCeiling.position, .1f, whatIsGround);
         CheckForJump();
         CheckForCrouch();
