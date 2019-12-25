@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -103,4 +104,6 @@ public class CharacterController2D : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+    public UnityEvent LendEvent;
 }

@@ -72,4 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckForRun() =>
         run = Input.GetButton("Run") && !crouch;
+
+    public void OnLanding()
+    {
+    }
 }
