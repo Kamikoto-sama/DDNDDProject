@@ -49,16 +49,23 @@ public class PlayerMovement : MonoBehaviour
     private void CheckForCrouch()
     {
         if (Input.GetButtonDown("Crouch") && !isStuck)
+        {
             crouch = true;
+            animator.SetBool("IsCrouch", true);
+        }
         if (Input.GetButtonUp("Crouch"))
             if (!isCrossingCeiling)
+            {
                 crouch = false;
+                animator.SetBool("IsCrouch", false);
+            }
         if (crouch && isCrossingCeiling)
             isStuck = true;
         if (isStuck && !isCrossingCeiling)
         {
             crouch = false;
             isStuck = false;
+            animator.SetBool("IsCrouch", false);
         }
     }
 
@@ -70,8 +77,20 @@ public class PlayerMovement : MonoBehaviour
         controller.Climb(verticalMove, jump);
     }
 
-    private void CheckForRun() =>
-        run = Input.GetButton("Run") && !crouch;
+    private void CheckForRun()
+    {
+        bool run;
+        if (Input.GetButton("Run") && !crouch)
+        {
+            run = true;
+            animator.SetBool("IsRunn", true);
+        }
+        else
+        {
+            run = false;
+            animator.SetBool("IsRunn", false);
+        }
+    }
 
     public void OnLanding()
     {
