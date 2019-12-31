@@ -38,12 +38,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckForJump()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-            print("space pressed");
-        }
-            
+        if (!Input.GetButtonDown("Jump")) return;
+        jump = true;
+        animator.SetBool("IsJumping", true);
     }
 
     private void CheckForCrouch()
@@ -79,20 +76,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckForRun()
     {
-        bool run;
-        if (Input.GetButton("Run") && !crouch)
-        {
-            run = true;
-            animator.SetBool("IsRunn", true);
-        }
-        else
-        {
-            run = false;
-            animator.SetBool("IsRunn", false);
-        }
+        var isRunning = Input.GetButton("Run") && !crouch;
+        runSpeed = isRunning ? 140 : 70;
+        animator.SetBool("IsRunn", isRunning);
     }
 
-    public void OnLanding()
-    {
-    }
-}
+    public void OnLanding() => animator.SetBool("IsJumping", false);
+}    
