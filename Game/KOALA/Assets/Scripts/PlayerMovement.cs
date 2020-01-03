@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     private void CheckForLadder()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
-        if (hitInfo.collider == null) return;
+        if (hitInfo.collider == null || !Input.GetKey(KeyCode.Tab)) return;
         verticalMove = Input.GetAxisRaw("Vertical") * climbSpeed;
         controller.Climb(verticalMove, jump);
     }
