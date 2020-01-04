@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Interactive
 {
     public CharacterController2D controller;
 
@@ -18,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     public float distance;
     public Animator animator;
+    private bool climbing;
+    private Rigidbody2D rigidBody;
+
+    private void Start() => rigidBody = GetComponent<Rigidbody2D>();
 
     void Update()
     {
@@ -68,10 +73,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckForLadder()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, distance, whatIsLadder);
-        if (hitInfo.collider == null || !Input.GetKey(KeyCode.Tab)) return;
+        var trans = transform;
+        RaycastHit2D hitInfo = Physics2D.Raycast(trans.position, Vector2.up, distance, whatIsLadder);
+        if (hitInfo.collider == null || !Input.GetKey(KeyCode.Tab))
+        {
+            if (climbing)
+                rigidBody.gravityScale = 6;
+            climbing = false;
+            return;
+        }
+        climbing = true;
+        rigidBody.gravityScale = 0;
         verticalMove = Input.GetAxisRaw("Vertical") * climbSpeed;
-        controller.Climb(verticalMove, jump);
+        // controller.Climb(verticalMove, jump);
+        trans.Translate(Vector3.up * (verticalMove * Time.deltaTime));
     }
 
     private void CheckForRun()
