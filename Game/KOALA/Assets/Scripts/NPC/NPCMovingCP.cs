@@ -13,12 +13,20 @@ public class NPCMovingCP : MonoBehaviour
     public EntityState state;
     public Vector3 dir;
     private NPCVision _vision;
+    private Rigidbody2D _rigidbody2D;
+    private Vector3 _velocity = Vector3.zero;
+    [Range(0, .3f)] [SerializeField] private float _movementSmoothing = .05f;
 
     public enum EntityState
     {
         GoA,
         GoB,
         Wait
+    }
+    
+    private void Awake()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -49,6 +57,8 @@ public class NPCMovingCP : MonoBehaviour
                     StartCoroutine(Stay(nextState));
                     isMoving = false;
                 }
+                _rigidbody2D.velocity = Vector2.zero;
+                _rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAsleep;
 
                 break;
             case EntityState.GoA:
@@ -65,20 +75,27 @@ public class NPCMovingCP : MonoBehaviour
 
     void GoTo(float targetX)
     {
-        if (transform.position.x > targetX)
-        {
-            isLookingRight = false;
-        }
-        if (transform.position.x < targetX)
-        {
-            isLookingRight = true;
-        }
-        if (Math.Abs(transform.position.x - targetX) < 0.001)
+        Vector2 turgetVelocity = Vector2.zero;
+        if (Math.Abs(transform.position.x - targetX) < 0.1)
         {
             state = EntityState.Wait;
             return;
         }
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y), speed * Time.deltaTime);
+        if (transform.position.x > targetX)
+        {
+
+            isLookingRight = false;
+            turgetVelocity = new Vector2(-speed, 0);
+        }
+        if (transform.position.x < targetX)
+        {
+
+            isLookingRight = true;
+            turgetVelocity = new Vector2(speed, 0);
+        }
+
+        _rigidbody2D.velocity = Vector3.SmoothDamp(_rigidbody2D.velocity, turgetVelocity, ref _velocity, _movementSmoothing);
+        //transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y), speed * Time.deltaTime);
     }
 
     IEnumerator Stay(EntityState nextState)
