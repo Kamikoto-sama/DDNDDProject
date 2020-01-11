@@ -39,6 +39,7 @@ public class PlayerMovement : Interactive
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump, run);
         jump = false;
+        animator.SetBool("IsFallingDown", rigidBody.velocity.y < -1);
     }
 
     private void CheckForJump()
@@ -55,12 +56,14 @@ public class PlayerMovement : Interactive
             crouch = true;
             animator.SetBool("IsCrouch", true);
         }
+
         if (Input.GetButtonUp("Crouch"))
             if (!isCrossingCeiling)
             {
                 crouch = false;
                 animator.SetBool("IsCrouch", false);
             }
+
         if (crouch && isCrossingCeiling)
             isStuck = true;
         if (isStuck && !isCrossingCeiling)
@@ -82,6 +85,7 @@ public class PlayerMovement : Interactive
             climbing = false;
             return;
         }
+
         climbing = true;
         rigidBody.gravityScale = 0;
         verticalMove = Input.GetAxisRaw("Vertical") * climbSpeed;
@@ -97,4 +101,4 @@ public class PlayerMovement : Interactive
     }
 
     public void OnLanding() => animator.SetBool("IsJumping", false);
-}    
+}
