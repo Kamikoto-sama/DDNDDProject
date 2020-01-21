@@ -21,13 +21,12 @@ public class PlayerMovement : Interactive
     public Animator animator;
     private bool climbing;
     private Rigidbody2D rigidBody;
-    private Animation _animation;
 
     private void Start()
     {
         TriggersTags.Add("Interactive");
+        TriggersTags.Add("Movable");
         rigidBody = GetComponent<Rigidbody2D>();
-        _animation = GetComponent<Animation>();
     }
 
     void Update()
@@ -40,11 +39,21 @@ public class PlayerMovement : Interactive
         CheckForLadder();
         CheckForRun();
         CheckForInteraction();
+        CheckForMovable();
+    }
+
+    private void CheckForMovable()
+    {
+        var isMoving = Input.GetAxis("Horizontal") != 0;
+        if (InteractedTags.Contains("Movable") && isMoving)
+            animator.SetBool("IsPushing", true);
+        else
+            animator.SetBool("IsPushing", false);
     }
 
     private void CheckForInteraction()
     {
-        if (ObjectInArea && Input.GetButtonDown("Interact"))
+        if (InteractedTags.Contains("Interactive") && Input.GetButtonDown("Interact"))
             animator.Play("interact");
     }
 

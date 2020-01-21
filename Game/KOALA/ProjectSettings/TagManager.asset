@@ -9,6 +9,7 @@ TagManager:
   - Grabbable
   - Boomerang
   - Interactive
+  - Movable
   layers:
   - Default
   - TransparentFX
