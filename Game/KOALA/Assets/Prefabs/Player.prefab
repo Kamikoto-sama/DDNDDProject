@@ -109,6 +109,11 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 2073710367441233145}
   m_CeilingCheck: {fileID: 2073710368624845341}
   m_CrouchDisableCollider: {fileID: 2073710367207057126}
+  m_Grounded: 0
+  jmpCount: -1
+  LandEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &2073710367207057127
 Rigidbody2D:
   serializedVersion: 4
@@ -147,7 +152,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 15.123028, y: 24.62}
+    oldSize: {x: 15.39, y: 29.456747}
     newSize: {x: 15.123028, y: 24.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -200,6 +205,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   distance: 50
+  animator: {fileID: 0}
 --- !u!1 &2073710367441233144
 GameObject:
   m_ObjectHideFlags: 0

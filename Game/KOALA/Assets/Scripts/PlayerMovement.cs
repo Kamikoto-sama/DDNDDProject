@@ -21,6 +21,7 @@ public class PlayerMovement : Interactive
     public Animator animator;
     private bool climbing;
     private Rigidbody2D rigidBody;
+    private Rigidbody _rigidbody;
 
     private void Start()
     {
@@ -66,14 +67,14 @@ public class PlayerMovement : Interactive
 
     private void CheckForJump()
     {
-        if (!Input.GetButtonDown("Jump")) return;
+        if (!Input.GetButtonDown("Jump") || crouch) return;
         jump = true;
         animator.SetBool("IsJumping", true);
     }
 
     private void CheckForCrouch()
     {
-        if (Input.GetButtonDown("Crouch") && !isStuck)
+        if (Input.GetButtonDown("Crouch") && !isStuck && rigidBody.velocity.y == 0.0f)
         {
             crouch = true;
             animator.SetBool("IsCrouch", true);
@@ -110,6 +111,7 @@ public class PlayerMovement : Interactive
 
         climbing = true;
         rigidBody.gravityScale = 0;
+        rigidBody.velocity = new Vector2(0, 0);
         verticalMove = Input.GetAxisRaw("Vertical") * climbSpeed;
         // controller.Climb(verticalMove, jump);
         trans.Translate(Vector3.up * (verticalMove * Time.deltaTime));
@@ -121,6 +123,6 @@ public class PlayerMovement : Interactive
         runSpeed = isRunning ? 140 : 70;
         animator.SetBool("IsRunn", isRunning);
     }
-    
+
     public void OnLanding() => animator.SetBool("IsJumping", false);
 }
