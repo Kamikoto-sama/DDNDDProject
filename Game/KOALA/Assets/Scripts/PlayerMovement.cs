@@ -21,12 +21,13 @@ public class PlayerMovement : Interactive
     public Animator animator;
     private bool climbing;
     private Rigidbody2D rigidBody;
-    private bool interacting;
+    private Animation _animation;
 
     private void Start()
     {
         TriggersTags.Add("Interactive");
         rigidBody = GetComponent<Rigidbody2D>();
+        _animation = GetComponent<Animation>();
     }
 
     void Update()
@@ -43,13 +44,8 @@ public class PlayerMovement : Interactive
 
     private void CheckForInteraction()
     {
-        if (ObjectInArea && Input.GetButtonDown("Interact") && !interacting)
-        {
-            animator.SetTrigger("Interact");
-            interacting = true;
-        }
-        else if (interacting)
-            interacting = false;
+        if (ObjectInArea && Input.GetButtonDown("Interact"))
+            animator.Play("interact");
     }
 
     void FixedUpdate()
