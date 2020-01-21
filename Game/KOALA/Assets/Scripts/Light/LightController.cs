@@ -13,7 +13,7 @@ namespace Light
 
 		private void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.F) && playerInArea)
+			if (Input.GetButtonDown("Interact") && playerInArea)
 				lightState = !lightState;
 			lightComponent.enabled = HasPower && lightState;
 		}
