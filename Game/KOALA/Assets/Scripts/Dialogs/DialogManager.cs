@@ -13,7 +13,7 @@ namespace Dialogs
 
         private void Update()
         {
-            if (!Input.GetKeyDown(KeyCode.F) || !playerInArea || _dialogStarted) return;
+            if (!Input.GetKeyDown(KeyCode.F) || !ObjectInArea || _dialogStarted) return;
             _dialogStarted = true;
             OnGUI();
         }

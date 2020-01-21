@@ -29,7 +29,7 @@ namespace Light
 
         private void Update()
         {
-            if (Input.GetButtonDown("Interact") && playerInArea)
+            if (Input.GetButtonDown("Interact") && ObjectInArea)
                 SwitchPower();
         }
 

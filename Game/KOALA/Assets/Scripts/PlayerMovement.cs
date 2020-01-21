@@ -21,8 +21,13 @@ public class PlayerMovement : Interactive
     public Animator animator;
     private bool climbing;
     private Rigidbody2D rigidBody;
+    private bool interacting;
 
-    private void Start() => rigidBody = GetComponent<Rigidbody2D>();
+    private void Start()
+    {
+        TriggersTags.Add("Interactive");
+        rigidBody = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
@@ -33,6 +38,18 @@ public class PlayerMovement : Interactive
         CheckForCrouch();
         CheckForLadder();
         CheckForRun();
+        CheckForInteraction();
+    }
+
+    private void CheckForInteraction()
+    {
+        if (ObjectInArea && Input.GetButtonDown("Interact") && !interacting)
+        {
+            animator.SetTrigger("Interact");
+            interacting = true;
+        }
+        else if (interacting)
+            interacting = false;
     }
 
     void FixedUpdate()
@@ -99,6 +116,6 @@ public class PlayerMovement : Interactive
         runSpeed = isRunning ? 140 : 70;
         animator.SetBool("IsRunn", isRunning);
     }
-
+    
     public void OnLanding() => animator.SetBool("IsJumping", false);
 }
