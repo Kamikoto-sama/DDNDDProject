@@ -22,12 +22,14 @@ public class PlayerMovement : Interactive
     private bool climbing;
     private Rigidbody2D rigidBody;
     private Rigidbody _rigidbody;
+    private Collider2D _collider2D;
 
     private void Start()
     {
         TriggersTags.Add("Interactive");
         TriggersTags.Add("Movable");
         rigidBody = GetComponent<Rigidbody2D>();
+        _collider2D = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -45,16 +47,26 @@ public class PlayerMovement : Interactive
 
     private void CheckForMovable()
     {
-        var isMoving = Input.GetAxis("Horizontal") != 0;
-        if (InteractedTags.Contains("Movable") && isMoving)
+        var currentMovingDirection = Input.GetAxis("Horizontal");
+        if (InteractedObjects.ContainsKey("Movable") && currentMovingDirection != 0
+             && IsDirectionEqualsWithObject(InteractedObjects["Movable"], currentMovingDirection)
+             && !(_collider2D.bounds.min.y - 1 >= InteractedObjects["Movable"].bounds.max.y)
+             )
             animator.SetBool("IsPushing", true);
         else
             animator.SetBool("IsPushing", false);
     }
 
+    private bool IsDirectionEqualsWithObject(Collider2D otherObject, float currentMovingDirection)
+    {
+        var objX = otherObject.transform.position.x;
+        var currentX = transform.position.x;
+        return Math.Sign(objX - currentX) == Math.Sign(currentMovingDirection);
+    }
+
     private void CheckForInteraction()
     {
-        if (InteractedTags.Contains("Interactive") && Input.GetButtonDown("Interact"))
+        if (InteractedObjects.ContainsKey("Interactive") && Input.GetButtonDown("Interact"))
             animator.Play("interact");
     }
 
