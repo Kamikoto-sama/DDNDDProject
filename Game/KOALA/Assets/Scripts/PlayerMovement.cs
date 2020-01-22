@@ -23,6 +23,8 @@ public class PlayerMovement : Interactive
     private Rigidbody2D rigidBody;
     private Rigidbody _rigidbody;
     private Collider2D _collider2D;
+    private static readonly int IsClimbingVertically = Animator.StringToHash("IsClimbingVertically");
+    private static readonly int IsClimbingHorizontally = Animator.StringToHash("IsClimbingHorizontally");
 
     private void Start()
     {
@@ -49,9 +51,11 @@ public class PlayerMovement : Interactive
     {
         var currentMovingDirection = Input.GetAxis("Horizontal");
         if (InteractedObjects.ContainsKey("Movable") && currentMovingDirection != 0
-             && IsDirectionEqualsWithObject(InteractedObjects["Movable"], currentMovingDirection)
-             && !(_collider2D.bounds.min.y - 1 >= InteractedObjects["Movable"].bounds.max.y)
-             )
+                                                     && IsDirectionEqualsWithObject(InteractedObjects["Movable"],
+                                                         currentMovingDirection)
+                                                     && !(_collider2D.bounds.min.y - 1 >=
+                                                          InteractedObjects["Movable"].bounds.max.y)
+        )
             animator.SetBool("IsPushing", true);
         else
             animator.SetBool("IsPushing", false);
@@ -118,6 +122,8 @@ public class PlayerMovement : Interactive
             if (climbing)
                 rigidBody.gravityScale = 6;
             climbing = false;
+            animator.SetBool(IsClimbingVertically, false);
+            animator.SetBool(IsClimbingHorizontally, false);
             return;
         }
 
@@ -125,8 +131,9 @@ public class PlayerMovement : Interactive
         rigidBody.gravityScale = 0;
         rigidBody.velocity = new Vector2(0, 0);
         verticalMove = Input.GetAxisRaw("Vertical") * climbSpeed;
-        // controller.Climb(verticalMove, jump);
         trans.Translate(Vector3.up * (verticalMove * Time.deltaTime));
+        animator.SetBool(IsClimbingVertically, Math.Abs(verticalMove) != 0);
+        animator.SetBool(IsClimbingHorizontally, Math.Abs(horizontalMove) != 0);
     }
 
     private void CheckForRun()

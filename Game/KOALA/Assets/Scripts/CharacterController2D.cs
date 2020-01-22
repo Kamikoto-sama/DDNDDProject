@@ -35,8 +35,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         var colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         var grounded = colliders.Any(t => t.gameObject != gameObject);
         if (!m_Grounded && grounded)
@@ -84,19 +82,6 @@ public class CharacterController2D : MonoBehaviour
                 Flip();
         }
 
-        if (m_Grounded && jump)
-        {
-            m_Grounded = false;
-            print("Jump");
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-        }
-    }
-
-    public void Climb(float move, bool jump)
-    {
-        Vector3 targetVelocity = new Vector2(m_Rigidbody2D.velocity.x, move);
-        m_Rigidbody2D.velocity =
-            Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
         if (m_Grounded && jump)
         {
             m_Grounded = false;
