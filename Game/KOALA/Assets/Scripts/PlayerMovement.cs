@@ -131,6 +131,7 @@ public class PlayerMovement : Interactive
         rigidBody.gravityScale = 0;
         rigidBody.velocity = new Vector2(0, 0);
         verticalMove = Input.GetAxisRaw("Vertical") * climbSpeed;
+        horizontalMove *= 1.7f;
         trans.Translate(Vector3.up * (verticalMove * Time.deltaTime));
         animator.SetBool(IsClimbingVertically, Math.Abs(verticalMove) != 0);
         animator.SetBool(IsClimbingHorizontally, Math.Abs(horizontalMove) != 0);
