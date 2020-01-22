@@ -13,8 +13,14 @@ public class Boomerang : MonoBehaviour
     public static bool HaveBoom = true;
     public static bool Throwing = true;
     public static bool BoomIsComingBack;
-    //public static bool CanThrow;
+    public Animator animator;
     public float comingBackVelocity;
+
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void FixedUpdate()
     {
@@ -23,6 +29,7 @@ public class Boomerang : MonoBehaviour
             if (HaveBoom)
             {
                 IsForcing = true;
+                animator.Play("throw1");
                 if (force <= 70)
                 {
                     force += 1.5f;
@@ -66,13 +73,14 @@ public class Boomerang : MonoBehaviour
         if (BoomIsComingBack)
         {
             var dir = transform.position - boomerang.transform.position;
-            boomerangRb.velocity = dir.normalized * comingBackVelocity;
-            boomerangRb.angularVelocity = comingBackVelocity * 50;
+            boomerangRb.velocity = dir.normalized * (comingBackVelocity + 15);
+            boomerangRb.angularVelocity = comingBackVelocity * 50 + 70;
         }
     }
 
     void Throw()
     {
+        animator.Play("throw2");
         HaveBoom = false;
         var direction = GetDirectionToMause();
         var spawnPosition = transform.position;

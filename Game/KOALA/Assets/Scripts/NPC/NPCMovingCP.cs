@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using DragonBones;
 using UnityEngine;
 
 public class NPCMovingCP : MonoBehaviour
@@ -15,6 +16,7 @@ public class NPCMovingCP : MonoBehaviour
     private NPCVision _vision;
     private Rigidbody2D _rigidbody2D;
     private Vector3 _velocity = Vector3.zero;
+    public UnityArmatureComponent animationScript;
     [Range(0, .3f)] [SerializeField] private float _movementSmoothing = .05f;
 
     public enum EntityState
@@ -27,6 +29,7 @@ public class NPCMovingCP : MonoBehaviour
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        animationScript = GetComponent<UnityArmatureComponent>();
     }
 
     void Start()
@@ -44,6 +47,7 @@ public class NPCMovingCP : MonoBehaviour
     void Update()
     {
         _vision.isReverse = !isLookingRight;
+        animationScript._armature.flipX = isLookingRight;
         switch (state)
         {
             case EntityState.Wait:
